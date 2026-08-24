@@ -2,45 +2,14 @@
   "schema_version": "2.0",
   "chapter": 22,
   "chapter_title": "Amines",
-  "assigned_boss": "Functional Group Golem",
+  "assigned_boss": "Amine Assassin",
   "question_count": 50,
   "questions": [
     {
       "id": "ch22_q001",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "tertiary amine",
-      "difficulty": "medium",
-      "question_type": "term_definition_pairing",
-      "question": "Which term–description pairing is correct?",
-      "options": [
-        {
-          "label": "A",
-          "text": "amine basicity — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-        },
-        {
-          "label": "B",
-          "text": "secondary amine — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-        },
-        {
-          "label": "C",
-          "text": "diazonium ion — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-        },
-        {
-          "label": "D",
-          "text": "tertiary amine — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-        }
-      ],
-      "correct_option": "D",
-      "correct_answer": "tertiary amine — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
-      "explanation": "tertiary amine is correctly paired with: An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-    },
-    {
-      "id": "ch22_q002",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Assassin",
       "topic": "primary amine",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -65,13 +34,24 @@
       ],
       "correct_option": "B",
       "correct_answer": "An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
-      "explanation": "An amine whose nitrogen is bonded to one carbon group and two hydrogens."
+      "explanation": "An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
+      "spells": [
+        20,
+        30,
+        45
+      ],
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
     },
     {
-      "id": "ch22_q003",
+      "id": "ch22_q002",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Assassin",
       "topic": "amine basicity",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -96,44 +76,24 @@
       ],
       "correct_option": "B",
       "correct_answer": "The tendency of an amine lone pair to accept a proton.",
-      "explanation": "The tendency of an amine lone pair to accept a proton."
-    },
-    {
-      "id": "ch22_q004",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "secondary amine",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “secondary amine” from several related chapter concepts. Which description uniquely identifies it?",
-      "options": [
-        {
-          "label": "A",
-          "text": "An amine whose nitrogen is bonded to one carbon group and two hydrogens."
-        },
-        {
-          "label": "B",
-          "text": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
-        },
-        {
-          "label": "C",
-          "text": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
-        },
-        {
-          "label": "D",
-          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        }
+      "explanation": "The tendency of an amine lone pair to accept a proton.",
+      "spells": [
+        20,
+        30,
+        45
       ],
-      "correct_option": "B",
-      "correct_answer": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
-      "explanation": "The distinguishing description for secondary amine is: An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
     },
     {
-      "id": "ch22_q005",
+      "id": "ch22_q003",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Assassin",
       "topic": "tertiary amine",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -158,137 +118,24 @@
       ],
       "correct_option": "C",
       "correct_answer": "tertiary amine",
-      "explanation": "The best match is tertiary amine: An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-    },
-    {
-      "id": "ch22_q006",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "aniline",
-      "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: An aromatic amine in which an –NH2 group is bonded directly to a benzene ring. Which label should the student place on this concept?",
-      "options": [
-        {
-          "label": "A",
-          "text": "Hofmann elimination"
-        },
-        {
-          "label": "B",
-          "text": "amine basicity"
-        },
-        {
-          "label": "C",
-          "text": "aniline"
-        },
-        {
-          "label": "D",
-          "text": "ammonium ion"
-        }
+      "explanation": "The best match is tertiary amine: An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
+      "spells": [
+        20,
+        30,
+        45
       ],
-      "correct_option": "C",
-      "correct_answer": "aniline",
-      "explanation": "This description identifies aniline. An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-    },
-    {
-      "id": "ch22_q007",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "diazonium ion",
-      "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate. Which label should the student place on this concept?",
-      "options": [
-        {
-          "label": "A",
-          "text": "Hofmann elimination"
-        },
-        {
-          "label": "B",
-          "text": "diazonium ion"
-        },
-        {
-          "label": "C",
-          "text": "ammonium ion"
-        },
-        {
-          "label": "D",
-          "text": "reductive amination"
-        }
+      "health": [
+        100
       ],
-      "correct_option": "B",
-      "correct_answer": "diazonium ion",
-      "explanation": "This description identifies diazonium ion. An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+      "images": [
+        "amine-assassin.png"
+      ]
     },
     {
-      "id": "ch22_q008",
+      "id": "ch22_q004",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "amine",
-      "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups. Which label should the student place on this concept?",
-      "options": [
-        {
-          "label": "A",
-          "text": "aniline"
-        },
-        {
-          "label": "B",
-          "text": "secondary amine"
-        },
-        {
-          "label": "C",
-          "text": "Hofmann elimination"
-        },
-        {
-          "label": "D",
-          "text": "amine"
-        }
-      ],
-      "correct_option": "D",
-      "correct_answer": "amine",
-      "explanation": "This description identifies amine. An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-    },
-    {
-      "id": "ch22_q009",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "Hofmann elimination",
-      "difficulty": "medium",
-      "question_type": "term_definition_pairing",
-      "question": "Which term–description pairing is correct?",
-      "options": [
-        {
-          "label": "A",
-          "text": "amine basicity — Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        },
-        {
-          "label": "B",
-          "text": "Hofmann elimination — Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        },
-        {
-          "label": "C",
-          "text": "secondary amine — Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        },
-        {
-          "label": "D",
-          "text": "primary amine — Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        }
-      ],
-      "correct_option": "B",
-      "correct_answer": "Hofmann elimination — Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
-      "explanation": "Hofmann elimination is correctly paired with: Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-    },
-    {
-      "id": "ch22_q010",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Assassin",
       "topic": "reductive amination",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -313,44 +160,24 @@
       ],
       "correct_option": "A",
       "correct_answer": "reductive amination",
-      "explanation": "The best match is reductive amination: Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
-    },
-    {
-      "id": "ch22_q011",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "ammonium ion",
-      "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds. Which label should the student place on this concept?",
-      "options": [
-        {
-          "label": "A",
-          "text": "ammonium ion"
-        },
-        {
-          "label": "B",
-          "text": "reductive amination"
-        },
-        {
-          "label": "C",
-          "text": "Hofmann elimination"
-        },
-        {
-          "label": "D",
-          "text": "primary amine"
-        }
+      "explanation": "The best match is reductive amination: Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
+      "spells": [
+        20,
+        30,
+        45
       ],
-      "correct_option": "A",
-      "correct_answer": "ammonium ion",
-      "explanation": "This description identifies ammonium ion. A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
     },
     {
-      "id": "ch22_q012",
+      "id": "ch22_q005",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Assassin",
       "topic": "ammonium ion",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -375,44 +202,24 @@
       ],
       "correct_option": "B",
       "correct_answer": "ammonium ion",
-      "explanation": "The best match is ammonium ion: A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
-    },
-    {
-      "id": "ch22_q013",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "Hofmann elimination",
-      "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: Elimination from certain ammonium salts that often favors formation of the less substituted alkene. Which label should the student place on this concept?",
-      "options": [
-        {
-          "label": "A",
-          "text": "amine basicity"
-        },
-        {
-          "label": "B",
-          "text": "Hofmann elimination"
-        },
-        {
-          "label": "C",
-          "text": "amine"
-        },
-        {
-          "label": "D",
-          "text": "primary amine"
-        }
+      "explanation": "The best match is ammonium ion: A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
+      "spells": [
+        20,
+        30,
+        45
       ],
-      "correct_option": "B",
-      "correct_answer": "Hofmann elimination",
-      "explanation": "This description identifies Hofmann elimination. Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
     },
     {
-      "id": "ch22_q014",
+      "id": "ch22_q006",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Assassin",
       "topic": "amine",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -437,13 +244,192 @@
       ],
       "correct_option": "D",
       "correct_answer": "amine",
-      "explanation": "The best match is amine: An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+      "explanation": "The best match is amine: An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
+      "spells": [
+        20,
+        30,
+        45
+      ],
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
     },
     {
-      "id": "ch22_q015",
+      "id": "ch22_q007",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Assassin",
+      "topic": "tertiary amine",
+      "difficulty": "medium",
+      "question_type": "term_definition_pairing",
+      "question": "Which term–description pairing is correct?",
+      "options": [
+        {
+          "label": "A",
+          "text": "amine basicity — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
+        },
+        {
+          "label": "B",
+          "text": "secondary amine — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
+        },
+        {
+          "label": "C",
+          "text": "diazonium ion — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
+        },
+        {
+          "label": "D",
+          "text": "tertiary amine — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "tertiary amine — An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
+      "explanation": "tertiary amine is correctly paired with: An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
+      "spells": [
+        20,
+        30,
+        45
+      ],
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
+    },
+    {
+      "id": "ch22_q008",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Assassin",
+      "topic": "aniline",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: An aromatic amine in which an –NH2 group is bonded directly to a benzene ring. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Hofmann elimination"
+        },
+        {
+          "label": "B",
+          "text": "amine basicity"
+        },
+        {
+          "label": "C",
+          "text": "aniline"
+        },
+        {
+          "label": "D",
+          "text": "ammonium ion"
+        }
+      ],
+      "correct_option": "C",
+      "correct_answer": "aniline",
+      "explanation": "This description identifies aniline. An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
+      "spells": [
+        20,
+        30,
+        45
+      ],
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
+    },
+    {
+      "id": "ch22_q009",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Assassin",
+      "topic": "diazonium ion",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Hofmann elimination"
+        },
+        {
+          "label": "B",
+          "text": "diazonium ion"
+        },
+        {
+          "label": "C",
+          "text": "ammonium ion"
+        },
+        {
+          "label": "D",
+          "text": "reductive amination"
+        }
+      ],
+      "correct_option": "B",
+      "correct_answer": "diazonium ion",
+      "explanation": "This description identifies diazonium ion. An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
+      "spells": [
+        20,
+        30,
+        45
+      ],
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
+    },
+    {
+      "id": "ch22_q010",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Assassin",
+      "topic": "amine",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "aniline"
+        },
+        {
+          "label": "B",
+          "text": "secondary amine"
+        },
+        {
+          "label": "C",
+          "text": "Hofmann elimination"
+        },
+        {
+          "label": "D",
+          "text": "amine"
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "amine",
+      "explanation": "This description identifies amine. An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
+      "spells": [
+        20,
+        30,
+        45
+      ],
+      "health": [
+        100
+      ],
+      "images": [
+        "amine-assassin.png"
+      ]
+    },
+    {
+      "id": "ch22_q011",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Basicity Banshee",
       "topic": "tertiary amine",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -468,44 +454,24 @@
       ],
       "correct_option": "A",
       "correct_answer": "An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
-      "explanation": "An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-    },
-    {
-      "id": "ch22_q016",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "diazonium ion",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “diazonium ion” from several related chapter concepts. Which description uniquely identifies it?",
-      "options": [
-        {
-          "label": "A",
-          "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
-        },
-        {
-          "label": "B",
-          "text": "The tendency of an amine lone pair to accept a proton."
-        },
-        {
-          "label": "C",
-          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        },
-        {
-          "label": "D",
-          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        }
+      "explanation": "An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
+      "spells": [
+        25,
+        35,
+        50
       ],
-      "correct_option": "A",
-      "correct_answer": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
-      "explanation": "The distinguishing description for diazonium ion is: An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
     },
     {
-      "id": "ch22_q017",
+      "id": "ch22_q012",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Basicity Banshee",
       "topic": "Hofmann elimination",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -530,13 +496,24 @@
       ],
       "correct_option": "D",
       "correct_answer": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
-      "explanation": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
+      "explanation": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
     },
     {
-      "id": "ch22_q018",
+      "id": "ch22_q013",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Basicity Banshee",
       "topic": "reductive amination",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -561,13 +538,24 @@
       ],
       "correct_option": "B",
       "correct_answer": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
-      "explanation": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
+      "explanation": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
     },
     {
-      "id": "ch22_q019",
+      "id": "ch22_q014",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Basicity Banshee",
       "topic": "diazonium ion",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -592,13 +580,24 @@
       ],
       "correct_option": "A",
       "correct_answer": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
-      "explanation": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+      "explanation": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
     },
     {
-      "id": "ch22_q020",
+      "id": "ch22_q015",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Basicity Banshee",
       "topic": "secondary amine",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -623,44 +622,150 @@
       ],
       "correct_option": "B",
       "correct_answer": "secondary amine",
-      "explanation": "The best match is secondary amine: An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+      "explanation": "The best match is secondary amine: An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
     },
     {
-      "id": "ch22_q021",
+      "id": "ch22_q016",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "ammonium ion",
-      "difficulty": "easy",
-      "question_type": "term_to_definition",
-      "question": "Which statement most accurately describes “ammonium ion”?",
+      "boss": "Basicity Banshee",
+      "topic": "Hofmann elimination",
+      "difficulty": "medium",
+      "question_type": "term_definition_pairing",
+      "question": "Which term–description pairing is correct?",
       "options": [
         {
           "label": "A",
-          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+          "text": "amine basicity — Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
         },
         {
           "label": "B",
-          "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+          "text": "Hofmann elimination — Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
         },
         {
           "label": "C",
-          "text": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+          "text": "secondary amine — Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
         },
         {
           "label": "D",
-          "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+          "text": "primary amine — Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
         }
       ],
-      "correct_option": "C",
-      "correct_answer": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
-      "explanation": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+      "correct_option": "B",
+      "correct_answer": "Hofmann elimination — Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
+      "explanation": "Hofmann elimination is correctly paired with: Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
     },
     {
-      "id": "ch22_q022",
+      "id": "ch22_q017",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Basicity Banshee",
+      "topic": "ammonium ion",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "ammonium ion"
+        },
+        {
+          "label": "B",
+          "text": "reductive amination"
+        },
+        {
+          "label": "C",
+          "text": "Hofmann elimination"
+        },
+        {
+          "label": "D",
+          "text": "primary amine"
+        }
+      ],
+      "correct_option": "A",
+      "correct_answer": "ammonium ion",
+      "explanation": "This description identifies ammonium ion. A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
+    },
+    {
+      "id": "ch22_q018",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Basicity Banshee",
+      "topic": "Hofmann elimination",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: Elimination from certain ammonium salts that often favors formation of the less substituted alkene. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "amine basicity"
+        },
+        {
+          "label": "B",
+          "text": "Hofmann elimination"
+        },
+        {
+          "label": "C",
+          "text": "amine"
+        },
+        {
+          "label": "D",
+          "text": "primary amine"
+        }
+      ],
+      "correct_option": "B",
+      "correct_answer": "Hofmann elimination",
+      "explanation": "This description identifies Hofmann elimination. Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
+    },
+    {
+      "id": "ch22_q019",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Basicity Banshee",
       "topic": "reductive amination",
       "difficulty": "medium",
       "question_type": "term_definition_pairing",
@@ -685,75 +790,108 @@
       ],
       "correct_option": "D",
       "correct_answer": "reductive amination — Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
-      "explanation": "reductive amination is correctly paired with: Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
+      "explanation": "reductive amination is correctly paired with: Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
     },
     {
-      "id": "ch22_q023",
+      "id": "ch22_q020",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "primary amine",
-      "difficulty": "medium",
-      "question_type": "term_definition_pairing",
-      "question": "Which term–description pairing is correct?",
+      "boss": "Basicity Banshee",
+      "topic": "secondary amine",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “secondary amine” from several related chapter concepts. Which description uniquely identifies it?",
       "options": [
         {
           "label": "A",
-          "text": "amine — An amine whose nitrogen is bonded to one carbon group and two hydrogens."
+          "text": "An amine whose nitrogen is bonded to one carbon group and two hydrogens."
         },
         {
           "label": "B",
-          "text": "primary amine — An amine whose nitrogen is bonded to one carbon group and two hydrogens."
+          "text": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
         },
         {
           "label": "C",
-          "text": "aniline — An amine whose nitrogen is bonded to one carbon group and two hydrogens."
+          "text": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
         },
         {
           "label": "D",
-          "text": "tertiary amine — An amine whose nitrogen is bonded to one carbon group and two hydrogens."
+          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
         }
       ],
       "correct_option": "B",
-      "correct_answer": "primary amine — An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
-      "explanation": "primary amine is correctly paired with: An amine whose nitrogen is bonded to one carbon group and two hydrogens."
+      "correct_answer": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
+      "explanation": "The distinguishing description for secondary amine is: An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
+      "spells": [
+        25,
+        35,
+        50
+      ],
+      "health": [
+        200
+      ],
+      "images": [
+        "basicity-banshee.png"
+      ]
     },
     {
-      "id": "ch22_q024",
+      "id": "ch22_q021",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Ammonium Guardian",
       "topic": "ammonium ion",
-      "difficulty": "medium",
-      "question_type": "term_definition_pairing",
-      "question": "Which term–description pairing is correct?",
+      "difficulty": "easy",
+      "question_type": "term_to_definition",
+      "question": "Which statement most accurately describes “ammonium ion”?",
       "options": [
         {
           "label": "A",
-          "text": "primary amine — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
         },
         {
           "label": "B",
-          "text": "ammonium ion — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+          "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
         },
         {
           "label": "C",
-          "text": "diazonium ion — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+          "text": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
         },
         {
           "label": "D",
-          "text": "aniline — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+          "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
         }
       ],
-      "correct_option": "B",
-      "correct_answer": "ammonium ion — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
-      "explanation": "ammonium ion is correctly paired with: A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+      "correct_option": "C",
+      "correct_answer": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
+      "explanation": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
+      "spells": [
+        30,
+        40,
+        55
+      ],
+      "health": [
+        300
+      ],
+      "images": [
+        "ammonium-guardian.png"
+      ]
     },
     {
-      "id": "ch22_q025",
+      "id": "ch22_q022",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Ammonium Guardian",
       "topic": "aniline",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -778,13 +916,24 @@
       ],
       "correct_option": "B",
       "correct_answer": "aniline",
-      "explanation": "The best match is aniline: An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+      "explanation": "The best match is aniline: An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
+      "spells": [
+        30,
+        40,
+        55
+      ],
+      "health": [
+        300
+      ],
+      "images": [
+        "ammonium-guardian.png"
+      ]
     },
     {
-      "id": "ch22_q026",
+      "id": "ch22_q023",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Ammonium Guardian",
       "topic": "amine basicity",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -809,230 +958,24 @@
       ],
       "correct_option": "A",
       "correct_answer": "amine basicity",
-      "explanation": "The best match is amine basicity: The tendency of an amine lone pair to accept a proton."
-    },
-    {
-      "id": "ch22_q027",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "aniline",
-      "difficulty": "medium",
-      "question_type": "term_definition_pairing",
-      "question": "Which term–description pairing is correct?",
-      "options": [
-        {
-          "label": "A",
-          "text": "ammonium ion — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-        },
-        {
-          "label": "B",
-          "text": "tertiary amine — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-        },
-        {
-          "label": "C",
-          "text": "aniline — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-        },
-        {
-          "label": "D",
-          "text": "Hofmann elimination — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-        }
+      "explanation": "The best match is amine basicity: The tendency of an amine lone pair to accept a proton.",
+      "spells": [
+        30,
+        40,
+        55
       ],
-      "correct_option": "C",
-      "correct_answer": "aniline — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
-      "explanation": "aniline is correctly paired with: An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-    },
-    {
-      "id": "ch22_q028",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "amine",
-      "difficulty": "medium",
-      "question_type": "term_definition_pairing",
-      "question": "Which term–description pairing is correct?",
-      "options": [
-        {
-          "label": "A",
-          "text": "reductive amination — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        },
-        {
-          "label": "B",
-          "text": "aniline — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        },
-        {
-          "label": "C",
-          "text": "amine — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        },
-        {
-          "label": "D",
-          "text": "tertiary amine — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        }
+      "health": [
+        300
       ],
-      "correct_option": "C",
-      "correct_answer": "amine — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
-      "explanation": "amine is correctly paired with: An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+      "images": [
+        "ammonium-guardian.png"
+      ]
     },
     {
-      "id": "ch22_q029",
+      "id": "ch22_q024",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "diazonium ion",
-      "difficulty": "medium",
-      "question_type": "term_definition_pairing",
-      "question": "Which term–description pairing is correct?",
-      "options": [
-        {
-          "label": "A",
-          "text": "amine — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
-        },
-        {
-          "label": "B",
-          "text": "ammonium ion — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
-        },
-        {
-          "label": "C",
-          "text": "tertiary amine — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
-        },
-        {
-          "label": "D",
-          "text": "diazonium ion — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
-        }
-      ],
-      "correct_option": "D",
-      "correct_answer": "diazonium ion — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
-      "explanation": "diazonium ion is correctly paired with: An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
-    },
-    {
-      "id": "ch22_q030",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "amine basicity",
-      "difficulty": "medium",
-      "question_type": "term_definition_pairing",
-      "question": "Which term–description pairing is correct?",
-      "options": [
-        {
-          "label": "A",
-          "text": "diazonium ion — The tendency of an amine lone pair to accept a proton."
-        },
-        {
-          "label": "B",
-          "text": "amine basicity — The tendency of an amine lone pair to accept a proton."
-        },
-        {
-          "label": "C",
-          "text": "reductive amination — The tendency of an amine lone pair to accept a proton."
-        },
-        {
-          "label": "D",
-          "text": "tertiary amine — The tendency of an amine lone pair to accept a proton."
-        }
-      ],
-      "correct_option": "B",
-      "correct_answer": "amine basicity — The tendency of an amine lone pair to accept a proton.",
-      "explanation": "amine basicity is correctly paired with: The tendency of an amine lone pair to accept a proton."
-    },
-    {
-      "id": "ch22_q031",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "reductive amination",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “reductive amination” from several related chapter concepts. Which description uniquely identifies it?",
-      "options": [
-        {
-          "label": "A",
-          "text": "The tendency of an amine lone pair to accept a proton."
-        },
-        {
-          "label": "B",
-          "text": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
-        },
-        {
-          "label": "C",
-          "text": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
-        },
-        {
-          "label": "D",
-          "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-        }
-      ],
-      "correct_option": "B",
-      "correct_answer": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
-      "explanation": "The distinguishing description for reductive amination is: Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
-    },
-    {
-      "id": "ch22_q032",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "amine",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “amine” from several related chapter concepts. Which description uniquely identifies it?",
-      "options": [
-        {
-          "label": "A",
-          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        },
-        {
-          "label": "B",
-          "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
-        },
-        {
-          "label": "C",
-          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        },
-        {
-          "label": "D",
-          "text": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
-        }
-      ],
-      "correct_option": "C",
-      "correct_answer": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
-      "explanation": "The distinguishing description for amine is: An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-    },
-    {
-      "id": "ch22_q033",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "primary amine",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “primary amine” from several related chapter concepts. Which description uniquely identifies it?",
-      "options": [
-        {
-          "label": "A",
-          "text": "An amine whose nitrogen is bonded to one carbon group and two hydrogens."
-        },
-        {
-          "label": "B",
-          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        },
-        {
-          "label": "C",
-          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        },
-        {
-          "label": "D",
-          "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-        }
-      ],
-      "correct_option": "A",
-      "correct_answer": "An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
-      "explanation": "The distinguishing description for primary amine is: An amine whose nitrogen is bonded to one carbon group and two hydrogens."
-    },
-    {
-      "id": "ch22_q034",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Ammonium Guardian",
       "topic": "primary amine",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -1057,261 +1000,276 @@
       ],
       "correct_option": "C",
       "correct_answer": "primary amine",
-      "explanation": "The best match is primary amine: An amine whose nitrogen is bonded to one carbon group and two hydrogens."
-    },
-    {
-      "id": "ch22_q035",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "ammonium ion",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “ammonium ion” from several related chapter concepts. Which description uniquely identifies it?",
-      "options": [
-        {
-          "label": "A",
-          "text": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
-        },
-        {
-          "label": "B",
-          "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
-        },
-        {
-          "label": "C",
-          "text": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
-        },
-        {
-          "label": "D",
-          "text": "The tendency of an amine lone pair to accept a proton."
-        }
+      "explanation": "The best match is primary amine: An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
+      "spells": [
+        30,
+        40,
+        55
       ],
-      "correct_option": "A",
-      "correct_answer": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
-      "explanation": "The distinguishing description for ammonium ion is: A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
-    },
-    {
-      "id": "ch22_q036",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "amine basicity",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “amine basicity” from several related chapter concepts. Which description uniquely identifies it?",
-      "options": [
-        {
-          "label": "A",
-          "text": "An amine whose nitrogen is bonded to one carbon group and two hydrogens."
-        },
-        {
-          "label": "B",
-          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        },
-        {
-          "label": "C",
-          "text": "The tendency of an amine lone pair to accept a proton."
-        },
-        {
-          "label": "D",
-          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        }
+      "health": [
+        300
       ],
-      "correct_option": "C",
-      "correct_answer": "The tendency of an amine lone pair to accept a proton.",
-      "explanation": "The distinguishing description for amine basicity is: The tendency of an amine lone pair to accept a proton."
+      "images": [
+        "ammonium-guardian.png"
+      ]
     },
     {
-      "id": "ch22_q037",
+      "id": "ch22_q025",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "secondary amine",
+      "boss": "Ammonium Guardian",
+      "topic": "primary amine",
       "difficulty": "medium",
       "question_type": "term_definition_pairing",
       "question": "Which term–description pairing is correct?",
       "options": [
         {
           "label": "A",
-          "text": "amine — An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+          "text": "amine — An amine whose nitrogen is bonded to one carbon group and two hydrogens."
         },
         {
           "label": "B",
-          "text": "reductive amination — An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+          "text": "primary amine — An amine whose nitrogen is bonded to one carbon group and two hydrogens."
         },
         {
           "label": "C",
-          "text": "aniline — An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+          "text": "aniline — An amine whose nitrogen is bonded to one carbon group and two hydrogens."
         },
         {
           "label": "D",
-          "text": "secondary amine — An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+          "text": "tertiary amine — An amine whose nitrogen is bonded to one carbon group and two hydrogens."
         }
       ],
-      "correct_option": "D",
-      "correct_answer": "secondary amine — An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
-      "explanation": "secondary amine is correctly paired with: An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+      "correct_option": "B",
+      "correct_answer": "primary amine — An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
+      "explanation": "primary amine is correctly paired with: An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
+      "spells": [
+        30,
+        40,
+        55
+      ],
+      "health": [
+        300
+      ],
+      "images": [
+        "ammonium-guardian.png"
+      ]
     },
     {
-      "id": "ch22_q038",
+      "id": "ch22_q026",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "reductive amination",
+      "boss": "Ammonium Guardian",
+      "topic": "ammonium ion",
       "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate. Which label should the student place on this concept?",
+      "question_type": "term_definition_pairing",
+      "question": "Which term–description pairing is correct?",
       "options": [
         {
           "label": "A",
-          "text": "reductive amination"
+          "text": "primary amine — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
         },
         {
           "label": "B",
-          "text": "amine"
+          "text": "ammonium ion — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
         },
         {
           "label": "C",
-          "text": "Hofmann elimination"
+          "text": "diazonium ion — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
         },
         {
           "label": "D",
-          "text": "primary amine"
+          "text": "aniline — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
         }
       ],
-      "correct_option": "A",
-      "correct_answer": "reductive amination",
-      "explanation": "This description identifies reductive amination. Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
+      "correct_option": "B",
+      "correct_answer": "ammonium ion — A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
+      "explanation": "ammonium ion is correctly paired with: A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
+      "spells": [
+        30,
+        40,
+        55
+      ],
+      "health": [
+        300
+      ],
+      "images": [
+        "ammonium-guardian.png"
+      ]
     },
     {
-      "id": "ch22_q039",
+      "id": "ch22_q027",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "Hofmann elimination",
+      "boss": "Ammonium Guardian",
+      "topic": "aniline",
+      "difficulty": "medium",
+      "question_type": "term_definition_pairing",
+      "question": "Which term–description pairing is correct?",
+      "options": [
+        {
+          "label": "A",
+          "text": "ammonium ion — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+        },
+        {
+          "label": "B",
+          "text": "tertiary amine — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+        },
+        {
+          "label": "C",
+          "text": "aniline — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+        },
+        {
+          "label": "D",
+          "text": "Hofmann elimination — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+        }
+      ],
+      "correct_option": "C",
+      "correct_answer": "aniline — An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
+      "explanation": "aniline is correctly paired with: An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
+      "spells": [
+        30,
+        40,
+        55
+      ],
+      "health": [
+        300
+      ],
+      "images": [
+        "ammonium-guardian.png"
+      ]
+    },
+    {
+      "id": "ch22_q028",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Ammonium Guardian",
+      "topic": "amine",
+      "difficulty": "medium",
+      "question_type": "term_definition_pairing",
+      "question": "Which term–description pairing is correct?",
+      "options": [
+        {
+          "label": "A",
+          "text": "reductive amination — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+        },
+        {
+          "label": "B",
+          "text": "aniline — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+        },
+        {
+          "label": "C",
+          "text": "amine — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+        },
+        {
+          "label": "D",
+          "text": "tertiary amine — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+        }
+      ],
+      "correct_option": "C",
+      "correct_answer": "amine — An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
+      "explanation": "amine is correctly paired with: An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
+      "spells": [
+        30,
+        40,
+        55
+      ],
+      "health": [
+        300
+      ],
+      "images": [
+        "ammonium-guardian.png"
+      ]
+    },
+    {
+      "id": "ch22_q029",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Ammonium Guardian",
+      "topic": "diazonium ion",
       "difficulty": "hard",
       "question_type": "concept_discrimination",
-      "question": "You need to distinguish “Hofmann elimination” from several related chapter concepts. Which description uniquely identifies it?",
+      "question": "You need to distinguish “diazonium ion” from several related chapter concepts. Which description uniquely identifies it?",
       "options": [
         {
           "label": "A",
-          "text": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
-        },
-        {
-          "label": "B",
-          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
-        },
-        {
-          "label": "C",
-          "text": "The tendency of an amine lone pair to accept a proton."
-        },
-        {
-          "label": "D",
-          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        }
-      ],
-      "correct_option": "D",
-      "correct_answer": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
-      "explanation": "The distinguishing description for Hofmann elimination is: Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-    },
-    {
-      "id": "ch22_q040",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "primary amine",
-      "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: An amine whose nitrogen is bonded to one carbon group and two hydrogens. Which label should the student place on this concept?",
-      "options": [
-        {
-          "label": "A",
-          "text": "reductive amination"
-        },
-        {
-          "label": "B",
-          "text": "amine"
-        },
-        {
-          "label": "C",
-          "text": "Hofmann elimination"
-        },
-        {
-          "label": "D",
-          "text": "primary amine"
-        }
-      ],
-      "correct_option": "D",
-      "correct_answer": "primary amine",
-      "explanation": "This description identifies primary amine. An amine whose nitrogen is bonded to one carbon group and two hydrogens."
-    },
-    {
-      "id": "ch22_q041",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "tertiary amine",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “tertiary amine” from several related chapter concepts. Which description uniquely identifies it?",
-      "options": [
-        {
-          "label": "A",
-          "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-        },
-        {
-          "label": "B",
-          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
-        },
-        {
-          "label": "C",
           "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
         },
         {
-          "label": "D",
-          "text": "An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-        }
-      ],
-      "correct_option": "D",
-      "correct_answer": "An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
-      "explanation": "The distinguishing description for tertiary amine is: An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
-    },
-    {
-      "id": "ch22_q042",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "secondary amine",
-      "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: An amine whose nitrogen is bonded to two carbon groups and one hydrogen. Which label should the student place on this concept?",
-      "options": [
-        {
-          "label": "A",
-          "text": "ammonium ion"
-        },
-        {
           "label": "B",
-          "text": "reductive amination"
+          "text": "The tendency of an amine lone pair to accept a proton."
         },
         {
           "label": "C",
-          "text": "amine"
+          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
         },
         {
           "label": "D",
-          "text": "secondary amine"
+          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
         }
       ],
-      "correct_option": "D",
-      "correct_answer": "secondary amine",
-      "explanation": "This description identifies secondary amine. An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+      "correct_option": "A",
+      "correct_answer": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
+      "explanation": "The distinguishing description for diazonium ion is: An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
+      "spells": [
+        30,
+        40,
+        55
+      ],
+      "health": [
+        300
+      ],
+      "images": [
+        "ammonium-guardian.png"
+      ]
     },
     {
-      "id": "ch22_q043",
+      "id": "ch22_q030",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Ammonium Guardian",
+      "topic": "reductive amination",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “reductive amination” from several related chapter concepts. Which description uniquely identifies it?",
+      "options": [
+        {
+          "label": "A",
+          "text": "The tendency of an amine lone pair to accept a proton."
+        },
+        {
+          "label": "B",
+          "text": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
+        },
+        {
+          "label": "C",
+          "text": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+        },
+        {
+          "label": "D",
+          "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+        }
+      ],
+      "correct_option": "B",
+      "correct_answer": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
+      "explanation": "The distinguishing description for reductive amination is: Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
+      "spells": [
+        30,
+        40,
+        55
+      ],
+      "health": [
+        300
+      ],
+      "images": [
+        "ammonium-guardian.png"
+      ]
+    },
+    {
+      "id": "ch22_q031",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Nitrogen Necromancer",
       "topic": "amine",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -1336,13 +1294,24 @@
       ],
       "correct_option": "A",
       "correct_answer": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
-      "explanation": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+      "explanation": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
     },
     {
-      "id": "ch22_q044",
+      "id": "ch22_q032",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Nitrogen Necromancer",
       "topic": "Hofmann elimination",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -1367,13 +1336,24 @@
       ],
       "correct_option": "A",
       "correct_answer": "Hofmann elimination",
-      "explanation": "The best match is Hofmann elimination: Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
+      "explanation": "The best match is Hofmann elimination: Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
     },
     {
-      "id": "ch22_q045",
+      "id": "ch22_q033",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Nitrogen Necromancer",
       "topic": "diazonium ion",
       "difficulty": "easy",
       "question_type": "definition_to_term",
@@ -1398,44 +1378,318 @@
       ],
       "correct_option": "C",
       "correct_answer": "diazonium ion",
-      "explanation": "The best match is diazonium ion: An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+      "explanation": "The best match is diazonium ion: An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
     },
     {
-      "id": "ch22_q046",
+      "id": "ch22_q034",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "aniline",
-      "difficulty": "hard",
-      "question_type": "concept_discrimination",
-      "question": "You need to distinguish “aniline” from several related chapter concepts. Which description uniquely identifies it?",
+      "boss": "Nitrogen Necromancer",
+      "topic": "diazonium ion",
+      "difficulty": "medium",
+      "question_type": "term_definition_pairing",
+      "question": "Which term–description pairing is correct?",
       "options": [
         {
           "label": "A",
-          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+          "text": "amine — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
         },
         {
           "label": "B",
-          "text": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
+          "text": "ammonium ion — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
         },
         {
           "label": "C",
-          "text": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+          "text": "tertiary amine — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+        },
+        {
+          "label": "D",
+          "text": "diazonium ion — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "diazonium ion — An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
+      "explanation": "diazonium ion is correctly paired with: An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
+    },
+    {
+      "id": "ch22_q035",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Nitrogen Necromancer",
+      "topic": "amine basicity",
+      "difficulty": "medium",
+      "question_type": "term_definition_pairing",
+      "question": "Which term–description pairing is correct?",
+      "options": [
+        {
+          "label": "A",
+          "text": "diazonium ion — The tendency of an amine lone pair to accept a proton."
+        },
+        {
+          "label": "B",
+          "text": "amine basicity — The tendency of an amine lone pair to accept a proton."
+        },
+        {
+          "label": "C",
+          "text": "reductive amination — The tendency of an amine lone pair to accept a proton."
+        },
+        {
+          "label": "D",
+          "text": "tertiary amine — The tendency of an amine lone pair to accept a proton."
+        }
+      ],
+      "correct_option": "B",
+      "correct_answer": "amine basicity — The tendency of an amine lone pair to accept a proton.",
+      "explanation": "amine basicity is correctly paired with: The tendency of an amine lone pair to accept a proton.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
+    },
+    {
+      "id": "ch22_q036",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Nitrogen Necromancer",
+      "topic": "secondary amine",
+      "difficulty": "medium",
+      "question_type": "term_definition_pairing",
+      "question": "Which term–description pairing is correct?",
+      "options": [
+        {
+          "label": "A",
+          "text": "amine — An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+        },
+        {
+          "label": "B",
+          "text": "reductive amination — An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+        },
+        {
+          "label": "C",
+          "text": "aniline — An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+        },
+        {
+          "label": "D",
+          "text": "secondary amine — An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "secondary amine — An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
+      "explanation": "secondary amine is correctly paired with: An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
+    },
+    {
+      "id": "ch22_q037",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Nitrogen Necromancer",
+      "topic": "reductive amination",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "reductive amination"
+        },
+        {
+          "label": "B",
+          "text": "amine"
+        },
+        {
+          "label": "C",
+          "text": "Hofmann elimination"
+        },
+        {
+          "label": "D",
+          "text": "primary amine"
+        }
+      ],
+      "correct_option": "A",
+      "correct_answer": "reductive amination",
+      "explanation": "This description identifies reductive amination. Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
+    },
+    {
+      "id": "ch22_q038",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Nitrogen Necromancer",
+      "topic": "amine",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “amine” from several related chapter concepts. Which description uniquely identifies it?",
+      "options": [
+        {
+          "label": "A",
+          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
+        },
+        {
+          "label": "B",
+          "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+        },
+        {
+          "label": "C",
+          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+        },
+        {
+          "label": "D",
+          "text": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
+        }
+      ],
+      "correct_option": "C",
+      "correct_answer": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
+      "explanation": "The distinguishing description for amine is: An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
+    },
+    {
+      "id": "ch22_q039",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Nitrogen Necromancer",
+      "topic": "primary amine",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “primary amine” from several related chapter concepts. Which description uniquely identifies it?",
+      "options": [
+        {
+          "label": "A",
+          "text": "An amine whose nitrogen is bonded to one carbon group and two hydrogens."
+        },
+        {
+          "label": "B",
+          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
+        },
+        {
+          "label": "C",
+          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
         },
         {
           "label": "D",
           "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
         }
       ],
-      "correct_option": "D",
-      "correct_answer": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
-      "explanation": "The distinguishing description for aniline is: An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+      "correct_option": "A",
+      "correct_answer": "An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
+      "explanation": "The distinguishing description for primary amine is: An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
     },
     {
-      "id": "ch22_q047",
+      "id": "ch22_q040",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Nitrogen Necromancer",
+      "topic": "ammonium ion",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “ammonium ion” from several related chapter concepts. Which description uniquely identifies it?",
+      "options": [
+        {
+          "label": "A",
+          "text": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+        },
+        {
+          "label": "B",
+          "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+        },
+        {
+          "label": "C",
+          "text": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
+        },
+        {
+          "label": "D",
+          "text": "The tendency of an amine lone pair to accept a proton."
+        }
+      ],
+      "correct_option": "A",
+      "correct_answer": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
+      "explanation": "The distinguishing description for ammonium ion is: A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds.",
+      "spells": [
+        35,
+        45,
+        60
+      ],
+      "health": [
+        400
+      ],
+      "images": [
+        "nitrogen-necromancer.png"
+      ]
+    },
+    {
+      "id": "ch22_q041",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Overlord",
       "topic": "aniline",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -1460,44 +1714,24 @@
       ],
       "correct_option": "C",
       "correct_answer": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
-      "explanation": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
-    },
-    {
-      "id": "ch22_q048",
-      "chapter": 22,
-      "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
-      "topic": "tertiary amine",
-      "difficulty": "medium",
-      "question_type": "concept_recognition",
-      "question": "A student is reviewing a concept described as follows: An amine whose nitrogen is bonded to three carbon groups and has no N–H bond. Which label should the student place on this concept?",
-      "options": [
-        {
-          "label": "A",
-          "text": "amine basicity"
-        },
-        {
-          "label": "B",
-          "text": "Hofmann elimination"
-        },
-        {
-          "label": "C",
-          "text": "tertiary amine"
-        },
-        {
-          "label": "D",
-          "text": "aniline"
-        }
+      "explanation": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
+      "spells": [
+        40,
+        50,
+        65
       ],
-      "correct_option": "C",
-      "correct_answer": "tertiary amine",
-      "explanation": "This description identifies tertiary amine. An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
     },
     {
-      "id": "ch22_q049",
+      "id": "ch22_q042",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Overlord",
       "topic": "secondary amine",
       "difficulty": "easy",
       "question_type": "term_to_definition",
@@ -1522,13 +1756,150 @@
       ],
       "correct_option": "B",
       "correct_answer": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
-      "explanation": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+      "explanation": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
     },
     {
-      "id": "ch22_q050",
+      "id": "ch22_q043",
       "chapter": 22,
       "chapter_title": "Amines",
-      "boss": "Functional Group Golem",
+      "boss": "Amine Overlord",
+      "topic": "primary amine",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: An amine whose nitrogen is bonded to one carbon group and two hydrogens. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "reductive amination"
+        },
+        {
+          "label": "B",
+          "text": "amine"
+        },
+        {
+          "label": "C",
+          "text": "Hofmann elimination"
+        },
+        {
+          "label": "D",
+          "text": "primary amine"
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "primary amine",
+      "explanation": "This description identifies primary amine. An amine whose nitrogen is bonded to one carbon group and two hydrogens.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
+    },
+    {
+      "id": "ch22_q044",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Overlord",
+      "topic": "secondary amine",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: An amine whose nitrogen is bonded to two carbon groups and one hydrogen. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "ammonium ion"
+        },
+        {
+          "label": "B",
+          "text": "reductive amination"
+        },
+        {
+          "label": "C",
+          "text": "amine"
+        },
+        {
+          "label": "D",
+          "text": "secondary amine"
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "secondary amine",
+      "explanation": "This description identifies secondary amine. An amine whose nitrogen is bonded to two carbon groups and one hydrogen.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
+    },
+    {
+      "id": "ch22_q045",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Overlord",
+      "topic": "tertiary amine",
+      "difficulty": "medium",
+      "question_type": "concept_recognition",
+      "question": "A student is reviewing a concept described as follows: An amine whose nitrogen is bonded to three carbon groups and has no N–H bond. Which label should the student place on this concept?",
+      "options": [
+        {
+          "label": "A",
+          "text": "amine basicity"
+        },
+        {
+          "label": "B",
+          "text": "Hofmann elimination"
+        },
+        {
+          "label": "C",
+          "text": "tertiary amine"
+        },
+        {
+          "label": "D",
+          "text": "aniline"
+        }
+      ],
+      "correct_option": "C",
+      "correct_answer": "tertiary amine",
+      "explanation": "This description identifies tertiary amine. An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
+    },
+    {
+      "id": "ch22_q046",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Overlord",
       "topic": "amine basicity",
       "difficulty": "medium",
       "question_type": "concept_recognition",
@@ -1553,7 +1924,289 @@
       ],
       "correct_option": "D",
       "correct_answer": "amine basicity",
-      "explanation": "This description identifies amine basicity. The tendency of an amine lone pair to accept a proton."
+      "explanation": "This description identifies amine basicity. The tendency of an amine lone pair to accept a proton.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
+    },
+    {
+      "id": "ch22_q047",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Overlord",
+      "topic": "amine basicity",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “amine basicity” from several related chapter concepts. Which description uniquely identifies it?",
+      "options": [
+        {
+          "label": "A",
+          "text": "An amine whose nitrogen is bonded to one carbon group and two hydrogens."
+        },
+        {
+          "label": "B",
+          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
+        },
+        {
+          "label": "C",
+          "text": "The tendency of an amine lone pair to accept a proton."
+        },
+        {
+          "label": "D",
+          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+        }
+      ],
+      "correct_option": "C",
+      "correct_answer": "The tendency of an amine lone pair to accept a proton.",
+      "explanation": "The distinguishing description for amine basicity is: The tendency of an amine lone pair to accept a proton.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
+    },
+    {
+      "id": "ch22_q048",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Overlord",
+      "topic": "Hofmann elimination",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “Hofmann elimination” from several related chapter concepts. Which description uniquely identifies it?",
+      "options": [
+        {
+          "label": "A",
+          "text": "An amine whose nitrogen is bonded to two carbon groups and one hydrogen."
+        },
+        {
+          "label": "B",
+          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+        },
+        {
+          "label": "C",
+          "text": "The tendency of an amine lone pair to accept a proton."
+        },
+        {
+          "label": "D",
+          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
+      "explanation": "The distinguishing description for Hofmann elimination is: Elimination from certain ammonium salts that often favors formation of the less substituted alkene.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
+    },
+    {
+      "id": "ch22_q049",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Overlord",
+      "topic": "tertiary amine",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “tertiary amine” from several related chapter concepts. Which description uniquely identifies it?",
+      "options": [
+        {
+          "label": "A",
+          "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+        },
+        {
+          "label": "B",
+          "text": "Elimination from certain ammonium salts that often favors formation of the less substituted alkene."
+        },
+        {
+          "label": "C",
+          "text": "An aromatic nitrogen-containing cation, commonly Ar–N2+, useful as a synthetic intermediate."
+        },
+        {
+          "label": "D",
+          "text": "An amine whose nitrogen is bonded to three carbon groups and has no N–H bond."
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
+      "explanation": "The distinguishing description for tertiary amine is: An amine whose nitrogen is bonded to three carbon groups and has no N–H bond.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
+    },
+    {
+      "id": "ch22_q050",
+      "chapter": 22,
+      "chapter_title": "Amines",
+      "boss": "Amine Overlord",
+      "topic": "aniline",
+      "difficulty": "hard",
+      "question_type": "concept_discrimination",
+      "question": "You need to distinguish “aniline” from several related chapter concepts. Which description uniquely identifies it?",
+      "options": [
+        {
+          "label": "A",
+          "text": "An organic nitrogen compound derived conceptually from ammonia by replacing one or more hydrogens with carbon groups."
+        },
+        {
+          "label": "B",
+          "text": "Formation of an amine by reacting a carbonyl compound with an amine source followed by reduction of the resulting C=N-related intermediate."
+        },
+        {
+          "label": "C",
+          "text": "A positively charged nitrogen species formed when an amine is protonated or when nitrogen has four substituent bonds."
+        },
+        {
+          "label": "D",
+          "text": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring."
+        }
+      ],
+      "correct_option": "D",
+      "correct_answer": "An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
+      "explanation": "The distinguishing description for aniline is: An aromatic amine in which an –NH2 group is bonded directly to a benzene ring.",
+      "spells": [
+        40,
+        50,
+        65
+      ],
+      "health": [
+        500
+      ],
+      "images": [
+        "amine-overlord.png"
+      ]
     }
-  ]
+  ],
+  "bosses": [
+    "Amine Assassin",
+    "Basicity Banshee",
+    "Ammonium Guardian",
+    "Nitrogen Necromancer",
+    "Amine Overlord"
+  ],
+  "boss_strategy": {
+    "description": "Progressive difficulty across five bosses",
+    "progression": "Easy questions decrease by 1 per boss, Medium questions remain at 4, Hard questions increase by 1 per boss.",
+    "distribution": [
+      {
+        "boss": "Amine Assassin",
+        "easy": 6,
+        "medium": 4,
+        "hard": 0,
+        "total": 10,
+        "spells": [
+          20,
+          30,
+          45
+        ],
+        "health": [
+          100
+        ],
+        "images": [
+          "amine-assassin.png"
+        ]
+      },
+      {
+        "boss": "Basicity Banshee",
+        "easy": 5,
+        "medium": 4,
+        "hard": 1,
+        "total": 10,
+        "spells": [
+          25,
+          35,
+          50
+        ],
+        "health": [
+          200
+        ],
+        "images": [
+          "basicity-banshee.png"
+        ]
+      },
+      {
+        "boss": "Ammonium Guardian",
+        "easy": 4,
+        "medium": 4,
+        "hard": 2,
+        "total": 10,
+        "spells": [
+          30,
+          40,
+          55
+        ],
+        "health": [
+          300
+        ],
+        "images": [
+          "ammonium-guardian.png"
+        ]
+      },
+      {
+        "boss": "Nitrogen Necromancer",
+        "easy": 3,
+        "medium": 4,
+        "hard": 3,
+        "total": 10,
+        "spells": [
+          35,
+          45,
+          60
+        ],
+        "health": [
+          400
+        ],
+        "images": [
+          "nitrogen-necromancer.png"
+        ]
+      },
+      {
+        "boss": "Amine Overlord",
+        "easy": 2,
+        "medium": 4,
+        "hard": 4,
+        "total": 10,
+        "spells": [
+          40,
+          50,
+          65
+        ],
+        "health": [
+          500
+        ],
+        "images": [
+          "amine-overlord.png"
+        ]
+      }
+    ]
+  }
 }
