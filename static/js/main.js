@@ -1,5 +1,5 @@
 ﻿const $ = (selector) => document.querySelector(selector);
-import { Avatar, createAvatarStage, setAvatarState, DEFAULT_AVATAR_CONFIG, PLAYER_AVATAR_OPTIONS, normalizeAvatarConfig } from './avatars.js';
+import { Avatar, CHARACTERS, createAvatarStage, setAvatarState, DEFAULT_AVATAR_CONFIG, PLAYER_AVATAR_OPTIONS, normalizeAvatarConfig } from './avatars.js';
 
 let session = null;
 let game = null;
@@ -7,6 +7,9 @@ let avatarStage = null;
 let playerAvatar = null;
 let bossAvatar = null;
 let avatarConfig = normalizeAvatarConfig();
+let pendingEmail = '';
+let pendingUsername = '';
+let selectedAvatar = null;
 
 const api = async (path, body = {}) => {
   const payload = { ...body };
@@ -27,6 +30,71 @@ const api = async (path, body = {}) => {
 
   return response.json();
 };
+
+const authApi = async (path, body = {}, method = 'POST') => {
+  const response = await fetch(path, { method, credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: method === 'GET' ? undefined : JSON.stringify(body) });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) { const error = new Error(data.detail || 'Authentication action unavailable'); error.status = response.status; throw error; }
+  return data;
+};
+
+function authMessage(message, success = false) {
+  const status = $('#auth-status');
+  if (status) { status.textContent = message; status.className = success ? 'success' : 'error'; }
+}
+
+function showUsernameTakenModal() {
+  let modal = $('#username-taken-modal');
+  if (!modal) {
+    modal = document.createElement('div'); modal.id = 'username-taken-modal'; modal.className = 'auth-modal';
+    modal.innerHTML = '<div class="modal-card"><div class="eyebrow">ORGO // IDENTITY ALERT</div><h2>Username unavailable</h2><p>Username taken, choose a different one</p><button class="primary" id="username-taken-close">CHOOSE ANOTHER</button></div>';
+    $('#app').append(modal); $('#username-taken-close').onclick = () => modal.remove();
+  }
+}
+
+function showAvatarOnboarding() {
+  $('#boot')?.classList.add('hidden'); $('#auth-screen')?.classList.add('hidden'); $('#avatar-creator')?.classList.remove('hidden');
+  selectedAvatar = null;
+  renderAvatarSelection();
+}
+
+function renderAvatarSelection() {
+  const gallery = $('#avatar-gallery');
+  const status = $('#avatar-selection-status');
+  const button = $('#accept-avatar');
+  if (!gallery || !status || !button) return;
+  const options = Object.entries(CHARACTERS);
+  if (!options.length) { status.textContent = 'No avatars are available right now.'; status.className = 'avatar-selection-status error'; button.disabled = true; return; }
+  gallery.innerHTML = options.map(([id, avatar]) => `<button type="button" class="avatar-choice" data-avatar-id="${id}" aria-label="Choose ${avatar.name}"><span class="avatar-choice-art"><img src="${avatar.asset}" alt="${avatar.name}" loading="lazy"></span><span class="avatar-choice-name">${avatar.name}</span></button>`).join('');
+  gallery.querySelectorAll('.avatar-choice').forEach((choice) => {
+    const image = choice.querySelector('img');
+    image.addEventListener('error', () => { choice.classList.add('asset-error'); choice.disabled = true; image.remove(); status.textContent = 'One or more avatar assets could not be loaded. Try refreshing the page.'; status.className = 'avatar-selection-status error'; });
+    choice.addEventListener('click', () => {
+      selectedAvatar = choice.dataset.avatarId;
+      gallery.querySelectorAll('.avatar-choice').forEach((item) => item.classList.toggle('selected', item === choice));
+      button.disabled = false;
+      status.textContent = `${CHARACTERS[selectedAvatar].name} selected. Ready to enter the battlefield.`;
+      status.className = 'avatar-selection-status success';
+    });
+  });
+  status.textContent = 'Select an avatar to continue.'; status.className = 'avatar-selection-status'; button.disabled = true;
+}
+
+async function beginVerifiedGame() {
+  session = await api('/api/game/new', {});
+  if (session.finalized) { $('#boot')?.classList.add('hidden'); $('#auth-screen')?.classList.add('hidden'); $('#avatar-creator')?.classList.add('hidden'); $('#game-shell')?.classList.remove('hidden'); startPhaser(); render(session); return; }
+  showAvatarOnboarding();
+}
+
+function bindAuthEvents() {
+  $('#show-signup')?.addEventListener('click', () => { $('#login-form')?.classList.add('hidden'); $('#signup-form')?.classList.remove('hidden'); $('#auth-title').textContent = 'CREATE YOUR ACCOUNT'; authMessage(''); });
+  $('#show-login')?.addEventListener('click', () => { $('#signup-form')?.classList.add('hidden'); $('#login-form')?.classList.remove('hidden'); $('#auth-title').textContent = 'WELCOME, ALCHEMIST'; authMessage(''); });
+  $('#login-form')?.addEventListener('submit', async (event) => { event.preventDefault(); const data = Object.fromEntries(new FormData(event.currentTarget)); authMessage('Checking your credentials…'); try { await authApi('/api/auth/login', data); await beginVerifiedGame(); } catch (error) { authMessage(error.message); } });
+  $('#signup-form')?.addEventListener('submit', async (event) => { event.preventDefault(); const data = Object.fromEntries(new FormData(event.currentTarget)); pendingEmail = data.email; pendingUsername = data.username; authMessage('Sending your confirmation code…'); try { await authApi('/api/auth/signup', data); $('#signup-form').classList.add('hidden'); $('#verify-form').classList.remove('hidden'); $('#auth-title').textContent = 'CHECK YOUR EMAIL'; $('#auth-copy').textContent = `A 6-digit code was sent to ${pendingEmail}.`; authMessage('Code sent. It expires in 15 minutes.', true); } catch (error) { if (error.status === 409 && error.message === 'Username taken, choose a different one') showUsernameTakenModal(); else authMessage(error.message); } });
+  $('#verify-form')?.addEventListener('submit', async (event) => { event.preventDefault(); const data = Object.fromEntries(new FormData(event.currentTarget)); authMessage('Verifying your email…'); try { await authApi('/api/auth/verify', data); authMessage('Email verified.', true); await beginVerifiedGame(); } catch (error) { authMessage(error.message); } });
+  $('#resend-code')?.addEventListener('click', async () => { authMessage('Sending a fresh code…'); try { await authApi(`/api/auth/resend?email=${encodeURIComponent(pendingEmail)}`, {}, 'POST'); authMessage('A new code was sent. The previous code is no longer valid.', true); } catch (error) { authMessage(error.message); } });
+  $('#logout')?.addEventListener('click', async () => { await authApi('/api/auth/logout', {}, 'POST'); window.location.reload(); });
+}
 
 const spells = [
   ['fire-spark', 'Fire Spark', 'BASIC', '20 DMG'],
@@ -210,10 +278,11 @@ function render(s) {
     avatarPanel.innerHTML = '';
     const card = document.createElement('div');
     card.className = 'avatar-card';
-    const panelArt = Avatar({ character: 'organic-apprentice', state: 'idle', size: 'panel', config: s.avatar?.config || s.avatar });
+    const panelArt = Avatar({ character: s.avatar?.character || 'organic-apprentice', state: 'idle', size: 'panel', config: s.avatar?.config || s.avatar });
     panelArt.classList.add('avatar-panel-art');
     const info = document.createElement('div');
-    info.innerHTML = `<div class="avatar-name">FIELD ALCHEMIST</div><div class="avatar-sub">${s.player.hp} / ${s.player.max_hp} HP</div>`;
+    info.innerHTML = `<div class="avatar-name"></div><div class="avatar-sub">${s.player.hp} / ${s.player.max_hp} HP</div>`;
+    info.querySelector('.avatar-name').textContent = s.username || 'ALCHEMIST';
     card.append(panelArt, info);
     avatarPanel.append(card);
   }
@@ -233,7 +302,7 @@ function render(s) {
 function renderAvatars(s) {
   if (!avatarStage) return;
   if (!playerAvatar) {
-    playerAvatar = Avatar({ character: 'organic-apprentice', state: 'idle', size: 'player', direction: 'right', config: s.avatar?.config || s.avatar });
+    playerAvatar = Avatar({ character: s.avatar?.character || 'organic-apprentice', state: 'idle', size: 'player', direction: 'right', config: s.avatar?.config || s.avatar });
     bossAvatar = Avatar({ character: 'carbonyl-dragon', state: 'idle', size: 'boss', direction: 'left' });
     avatarStage.append(playerAvatar, bossAvatar);
   }
@@ -241,7 +310,7 @@ function renderAvatars(s) {
   bossAvatar.querySelector('.avatar-label')?.remove();
   const playerLabel = document.createElement('div');
   playerLabel.className = 'avatar-label player-label';
-  playerLabel.textContent = `YOU // ${s.player.hp} HP`;
+  playerLabel.textContent = `${s.username || 'ALCHEMIST'} // ${s.player.hp} HP`;
   const bossLabel = document.createElement('div');
   bossLabel.className = 'avatar-label boss-label';
   bossLabel.textContent = `${s.boss.name} // ${s.boss.hp} HP`;
@@ -391,28 +460,28 @@ function bindDomEvents() {
   const startButton = $('#start');
   if (startButton) {
     startButton.addEventListener('click', async () => {
-      session = await api('/api/game/new', {});
-      avatarConfig = normalizeAvatarConfig(DEFAULT_AVATAR_CONFIG);
-      $('#boot')?.classList.add('hidden');
-      $('#avatar-creator')?.classList.remove('hidden');
-      ensureAvatarCreatorUi();
-      updateAvatarPreview();
+      $('#boot')?.classList.add('hidden'); $('#auth-screen')?.classList.remove('hidden');
     });
   }
 
   const acceptButton = $('#accept-avatar');
   if (acceptButton) {
     acceptButton.addEventListener('click', async () => {
-      const avatar = { body: 'arc', skin: avatarConfig.skinTone, hair: avatarConfig.hair.color, outfit: avatarConfig.coat, accessory: avatarConfig.accessory, aura: avatarConfig.accentColor, config: avatarConfig };
-      session = await api('/api/avatar/finalize', { session_id: session.session_id, ...avatar });
-      $('#avatar-creator')?.classList.add('hidden');
-      $('#game-shell')?.classList.remove('hidden');
-      startPhaser();
-      render(session);
+      if (!selectedAvatar) return;
+      acceptButton.disabled = true; acceptButton.textContent = 'ENTERING BATTLEFIELD…';
+      try {
+        const avatar = { character: selectedAvatar, body: 'arc', config: { ...DEFAULT_AVATAR_CONFIG, baseCharacter: selectedAvatar } };
+        session = await api('/api/avatar/finalize', { session_id: session.session_id, ...avatar });
+        $('#avatar-creator')?.classList.add('hidden'); $('#game-shell')?.classList.remove('hidden'); startPhaser(); render(session);
+      } catch (error) {
+        acceptButton.disabled = false; acceptButton.textContent = 'CONTINUE TO BATTLEFIELD';
+        const status = $('#avatar-selection-status'); if (status) { status.textContent = error.message; status.className = 'avatar-selection-status error'; }
+      }
     });
   }
 
   ensureExplanationUi();
+  bindAuthEvents();
 }
 
 if (document.readyState === 'loading') {

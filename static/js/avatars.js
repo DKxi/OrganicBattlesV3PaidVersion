@@ -56,6 +56,11 @@ export function normalizeAvatarConfig(config = {}) {
 export const CHARACTERS = {
   'organic-apprentice': { name: 'Organic Apprentice', type: 'player', asset: '/static/assets/avatars/organic-apprentice.png' },
   'reaction-mage': { name: 'Reaction Mage', type: 'player', asset: '/static/assets/avatars/reaction-mage.png' },
+  'player-carbon-trailblazer': { name: 'Player Carbon Trailblazer', type: 'player', asset: '/static/assets/avatars/player-carbon-trailblazer.png' },
+  'player-catalysis-adept': { name: 'Player Catalysis Adept', type: 'player', asset: '/static/assets/avatars/player-catalysis-adept.png' },
+  'player-compound-artificer': { name: 'Player Compound Artificer', type: 'player', asset: '/static/assets/avatars/player-compound-artificer.png' },
+  'player-molecular-analyst': { name: 'Player Molecular Analyst', type: 'player', asset: '/static/assets/avatars/player-molecular-analyst.png' },
+  'player-research-alchemist': { name: 'Player Research Alchemist', type: 'player', asset: '/static/assets/avatars/player-research-alchemist.png' },
   'carbonyl-dragon': { name: 'Carbonyl Dragon', type: 'boss', asset: '/static/assets/avatars/carbonyl-dragon.png' },
 };
 
