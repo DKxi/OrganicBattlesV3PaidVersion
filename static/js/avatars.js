@@ -80,6 +80,11 @@ export function Avatar({ character = 'organic-apprentice', state = 'idle', size 
   node.innerHTML = `<div class="avatar-art-frame"><img class="avatar-art" src="${imageAsset}" alt="${imageName}" decoding="async" draggable="false"><span class="avatar-fallback" aria-hidden="true">${imageName}</span></div><div class="avatar-effects" aria-hidden="true"><span class="effect-aura"></span><span class="effect-spark spark-one"></span><span class="effect-spark spark-two"></span><span class="effect-accessory">${safeConfig.accessory === 'benzene-pin' ? '⌬' : safeConfig.accessory === 'periodic-table-badge' ? 'C' : safeConfig.accessory === 'molecule-brooch' ? '⌘' : safeConfig.accessory === 'reaction-arrow-pin' ? '↗' : safeConfig.accessory === 'chemist-gloves' ? '✦' : '◈'}</span></div>`;
   const image = node.querySelector('.avatar-art');
   image.addEventListener('error', () => {
+    if (asset && !image.dataset.retry) {
+      image.dataset.retry = 'true';
+      image.src = `${asset}${asset.includes('?') ? '&' : '?'}retry=1`;
+      return;
+    }
     if (image.dataset.fallback) return;
     image.dataset.fallback = 'true';
     if (asset) {

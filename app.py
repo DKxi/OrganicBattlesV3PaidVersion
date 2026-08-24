@@ -73,7 +73,7 @@ def init_db():
             id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE COLLATE NOCASE,
             username TEXT NOT NULL UNIQUE COLLATE NOCASE,
             password_hash TEXT NOT NULL, verified INTEGER NOT NULL DEFAULT 0,
-            avatar_json TEXT, created_at INTEGER NOT NULL
+            avatar_json TEXT, progress_json TEXT, created_at INTEGER NOT NULL
         );
         CREATE TABLE IF NOT EXISTS verification_codes (
             id INTEGER PRIMARY KEY AUTOINCREMENT, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
@@ -86,6 +86,10 @@ def init_db():
         );
         CREATE INDEX IF NOT EXISTS idx_codes_user ON verification_codes(user_id, created_at DESC);
         """)
+        try:
+            connection.execute("ALTER TABLE users ADD COLUMN progress_json TEXT")
+        except sqlite3.OperationalError:
+            pass
 
 
 init_db()
@@ -177,6 +181,39 @@ def public_user(row):
         except (TypeError, json.JSONDecodeError):
             saved_avatar = None
     return {"id": row["id"], "email": row["email"], "username": row["username"], "verified": bool(row["verified"]), "avatar": saved_avatar}
+
+
+def save_game_progress(game: "Session"):
+    progress = {
+        "chapter": game.chapter, "boss_index": game.boss_index,
+        "player_hp": game.player_hp, "player_max_hp": game.player_max_hp, "boss_hp": game.boss_hp,
+        "active_question": list(game.active_question) if game.active_question else None,
+        "active_spell": game.active_spell, "turn_id": game.turn_id,
+        "cooldowns": game.cooldowns, "log": game.log[-20:], "completed": list(game.completed), "rewards": game.rewards,
+        "question_cursors": {f"{chapter}:{boss}": cursor for (chapter, boss), cursor in game.question_cursors.items()},
+    }
+    with db() as connection:
+        connection.execute("UPDATE users SET progress_json=? WHERE id=?", (json.dumps(progress), game.user_id))
+
+
+def restore_game_progress(game: "Session", progress_json: str | None):
+    if not progress_json:
+        return
+    try:
+        progress = json.loads(progress_json)
+        game.chapter = max(1, min(int(progress.get("chapter", game.chapter)), len(CHAPTERS)))
+        game.boss_index = max(0, min(int(progress.get("boss_index", game.boss_index)), len(CHAPTERS[game.chapter - 1]["bosses"]) - 1))
+        game.player_hp = int(progress.get("player_hp", game.player_hp)); game.player_max_hp = int(progress.get("player_max_hp", game.player_max_hp)); game.boss_hp = int(progress.get("boss_hp", game.boss_hp))
+        active_question = progress.get("active_question")
+        game.active_question = tuple(active_question) if active_question else None
+        game.active_spell = progress.get("active_spell"); game.turn_id = progress.get("turn_id")
+        game.cooldowns = {str(key): float(value) for key, value in progress.get("cooldowns", {}).items()}
+        game.log = progress.get("log", game.log); game.completed = set(progress.get("completed", [])); game.rewards = progress.get("rewards", [])
+        game.question_cursors = {}
+        for key, cursor in progress.get("question_cursors", {}).items():
+            chapter, boss = key.split(":", 1); game.question_cursors[(int(chapter), boss)] = int(cursor)
+    except (TypeError, ValueError, KeyError, json.JSONDecodeError) as error:
+        logger.warning("Could not restore saved game progress for user %s: %s", game.user_id, error)
 
 SPELLS = {
     "fire-spark": ("Fire Spark", "basic", 20, 1.5, "A quick flame projectile."),
@@ -568,6 +605,7 @@ def new_game(authorization: str | None = Header(default=None), session_token: st
     if user["avatar_json"]:
         s.avatar = Avatar.model_validate(json.loads(user["avatar_json"]))
         s.finalized = True
+    restore_game_progress(s, user["progress_json"])
     sessions[s.id] = s; return s.state()
 
 @app.get("/api/game/state")
@@ -586,7 +624,7 @@ def finalize_avatar(session_id: str, avatar: Avatar, authorization: str | None =
     s.avatar, s.finalized = avatar, True
     with db() as connection:
         connection.execute("UPDATE users SET avatar_json=? WHERE id=?", (avatar.model_dump_json(), user["id"]))
-    s.log.append("Avatar updated. Your ORGO journey continues." if was_finalized else "Avatar accepted. Your ORGO journey begins."); return s.state()
+    s.log.append("Avatar updated. Your ORGO journey continues." if was_finalized else "Avatar accepted. Your ORGO journey begins."); save_game_progress(s); return s.state()
 
 @app.post("/api/battle/select-spell")
 def select_spell(session_id: str, request: SpellRequest, authorization: str | None = Header(default=None), session_token: str | None = Cookie(default=None)):
@@ -606,6 +644,7 @@ def select_spell(session_id: str, request: SpellRequest, authorization: str | No
     if GAME_CONTENT_SOURCE != "json":
         available_questions = QUESTION_BANK_BY_BOSS.get((s.chapter, s.current_boss()[0]), QUESTION_BANK_BY_CHAPTER.get(s.chapter, QUESTIONS))
         q = random.choice(available_questions); choices = q[1][:]; random.shuffle(choices); s.active_question = (q[0], choices, q[2])
+    save_game_progress(s)
     return {"turn_id": s.turn_id, **s.state()}
 
 @app.post("/api/battle/answer")
@@ -615,19 +654,34 @@ def answer(session_id: str, request: AnswerRequest, authorization: str | None = 
     if not s.active_question or not s.active_spell: raise HTTPException(409, "No active question")
     q, choices, correct = s.active_question; spell_id = s.active_spell; spell = SPELLS[spell_id]
     is_correct = request.answer == correct
-    damage = spell[2]
+    spell_power = spell[2]
     if GAME_CONTENT_SOURCE == "json" and QUESTION_SPELL_VALUES.get(q):
-        damage = QUESTION_SPELL_VALUES[q][JSON_SPELL_IDS_BY_RANK.index(spell_id)]
-    damage = damage if is_correct else 0
+        spell_power = QUESTION_SPELL_VALUES[q][JSON_SPELL_IDS_BY_RANK.index(spell_id)]
+    damage = spell_power if is_correct else 0
     s.boss_hp = max(0, s.boss_hp - damage); s.cooldowns[spell_id] = time.time() + spell[3]
-    boss_hit = random.random() < 0.5; boss_damage = s.current_boss()[3] if boss_hit else 0
-    s.player_hp = max(0, s.player_hp - boss_damage); s.log.append(("Correct! " + spell[0] + " deals " + str(damage) + " damage." if is_correct else "Fizzle. The correct answer was: " + correct))
-    result = {"correct": is_correct, "question_prompt": q, "correct_answer": correct, "explanation": QUESTION_EXPLANATIONS.get(q, EXPLANATIONS.get(q, "Review the definition and compare each answer with the key chemistry idea in the question.")), "damage": damage, "boss_hit": boss_hit, "boss_damage": boss_damage, "spell_id": spell_id}
+    self_damage = 0
+    if is_correct:
+        boss_hit = random.random() < 0.5; boss_damage = s.current_boss()[3] if boss_hit else 0
+        s.player_hp = max(0, s.player_hp - boss_damage)
+        s.log.append("Correct! " + spell[0] + " deals " + str(damage) + " damage.")
+    else:
+        boss_hit = False; boss_damage = 0; self_damage = spell_power
+        s.player_hp = max(0, s.player_hp - self_damage)
+        s.log.append("Fizzle. The incorrect " + spell[0] + " backfires for " + str(self_damage) + " damage. The correct answer was: " + correct)
+    result = {"correct": is_correct, "question_prompt": q, "correct_answer": correct, "explanation": QUESTION_EXPLANATIONS.get(q, EXPLANATIONS.get(q, "Review the definition and compare each answer with the key chemistry idea in the question.")), "damage": damage, "self_damage": self_damage, "boss_hit": boss_hit, "boss_damage": boss_damage, "spell_id": spell_id}
     defeated = s.boss_hp <= 0; defeat = s.player_hp <= 0
     s.active_question = s.active_spell = s.turn_id = None
     if defeated:
         boss_id = s.current_boss()[0]; s.completed.add(boss_id); reward = {1:"Resonance Slayer",2:"Mechanism Master",3:"Spectral Champion"}.get(s.chapter, f"Chapter {s.chapter} Champion") if s.boss_index == len(CHAPTERS[s.chapter-1]["bosses"])-1 else "Arcane Chemistry Shard"; s.rewards.append(reward); s.log.append(f"{s.current_boss()[1]} defeated! Reward unlocked: {reward}.")
-    if defeat: s.log.append("Your aura fades. Retry when ready.")
+    if defeat:
+        # Defeat is a checkpoint at the current boss. Preserve chapter,
+        # boss_index, completed bosses, and rewards; only reset this fight.
+        s.boss_hp = s.current_boss()[2]
+        s.player_hp = s.player_max_hp
+        s.completed.discard(s.current_boss()[0])
+        s.active_question = s.active_spell = s.turn_id = None
+        s.log.append("Your aura fades. Retry this boss when ready.")
+    save_game_progress(s)
     result.update({"defeated": defeated, "defeat": defeat, **s.state()}); return result
 
 @app.post("/api/battle/retry")
@@ -635,7 +689,7 @@ def retry(session_id: str, authorization: str | None = Header(default=None), ses
     s = get_session(session_id)
     if s.user_id != auth_user(authorization, session_token)["id"]: raise HTTPException(403, "This game session belongs to another account")
     s.player_hp = 150; s.boss_hp = s.current_boss()[2]; s.active_question = s.active_spell = None
-    s.log.append("Battle reset. Your completed progression remains safe."); return s.state()
+    s.log.append("Battle reset. Your completed progression remains safe."); save_game_progress(s); return s.state()
 
 @app.post("/api/battle/next-turn")
 def next_turn(session_id: str, authorization: str | None = Header(default=None), session_token: str | None = Cookie(default=None)):
@@ -646,7 +700,7 @@ def next_turn(session_id: str, authorization: str | None = Header(default=None),
     elif s.chapter < len(CHAPTERS): s.chapter += 1; s.boss_index = 0
     else: return {"victory": True, **s.state()}
     s.boss_hp = s.current_boss()[2]; s.player_hp = 150
-    s.log.append("New arena discovered: " + s.current_boss()[1]); return s.state()
+    s.log.append("New arena discovered: " + s.current_boss()[1]); save_game_progress(s); return s.state()
 
 @app.get("/api/progression")
 def progression(session_id: str, authorization: str | None = Header(default=None), session_token: str | None = Cookie(default=None)):

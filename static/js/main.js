@@ -310,10 +310,10 @@ function renderAvatars(s) {
   if (!avatarStage) return;
   if (!playerAvatar) {
     playerAvatar = Avatar({ character: s.avatar?.character || 'organic-apprentice', state: 'idle', size: 'player', direction: 'right', config: s.avatar?.config || s.avatar });
-    bossAvatar = Avatar({ character: 'carbonyl-dragon', asset: s.boss.image ? `/static/assets/bosses/${s.boss.image}` : '/static/assets/bosses/boss-placeholder.svg', displayName: s.boss.name, state: 'idle', size: 'boss', direction: 'left' });
+    bossAvatar = Avatar({ character: 'carbonyl-dragon', asset: s.boss.image ? `/static/assets/bosses/${s.boss.image}?v=2` : '/static/assets/bosses/boss-placeholder.svg?v=2', displayName: s.boss.name, state: 'idle', size: 'boss', direction: 'left' });
     avatarStage.append(playerAvatar, bossAvatar);
   } else {
-    const expectedBossAsset = s.boss.image ? `/static/assets/bosses/${s.boss.image}` : '/static/assets/bosses/boss-placeholder.svg';
+    const expectedBossAsset = s.boss.image ? `/static/assets/bosses/${s.boss.image}?v=2` : '/static/assets/bosses/boss-placeholder.svg?v=2';
     if (bossAvatar.dataset.asset !== expectedBossAsset) {
       const replacement = Avatar({ character: 'carbonyl-dragon', asset: expectedBossAsset, displayName: s.boss.name, state: 'idle', size: 'boss', direction: 'left' });
       bossAvatar.replaceWith(replacement); bossAvatar = replacement;
@@ -410,7 +410,7 @@ function showOutcome(r) {
     }
     showBattleModal({
       title: 'SPELL FIZZLE',
-      copy: `The spell fizzled. Correct answer: ${r.correct_answer}`,
+      copy: `The spell fizzled and backfired for ${r.self_damage} damage. Correct answer: ${r.correct_answer}`,
       action: 'VIEW EXPLANATION',
       onDone: () => showExplanation(r),
     });
