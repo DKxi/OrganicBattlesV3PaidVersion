@@ -1,5 +1,5 @@
 ﻿const $ = (selector) => document.querySelector(selector);
-import { Avatar, CHARACTERS, createAvatarStage, setAvatarState, DEFAULT_AVATAR_CONFIG, PLAYER_AVATAR_OPTIONS, normalizeAvatarConfig } from './avatars.js';
+import { Avatar, CHARACTERS, createAvatarStage, setAvatarState, DEFAULT_AVATAR_CONFIG, PLAYER_AVATAR_OPTIONS, normalizeAvatarConfig } from './avatars.js?v=3';
 
 let session = null;
 let game = null;
@@ -52,18 +52,22 @@ function showUsernameTakenModal() {
   }
 }
 
-function showAvatarOnboarding() {
+function showAvatarOnboarding(existingAvatar = null) {
   $('#boot')?.classList.add('hidden'); $('#auth-screen')?.classList.add('hidden'); $('#avatar-creator')?.classList.remove('hidden');
-  selectedAvatar = null;
-  renderAvatarSelection();
+  const returning = Boolean(existingAvatar?.character && CHARACTERS[existingAvatar.character]?.type === 'player');
+  selectedAvatar = returning ? existingAvatar.character : null;
+  $('#avatar-screen-title').textContent = returning ? 'YOUR AVATAR' : 'PICK YOUR AVATAR';
+  $('#avatar-screen-copy').textContent = returning ? 'You have already selected this avatar. Would you like to change it?' : 'Choose one field companion. Your selection will represent you on every battlefield.';
+  $('#keep-avatar')?.classList.toggle('hidden', !returning);
+  renderAvatarSelection(returning);
 }
 
-function renderAvatarSelection() {
+function renderAvatarSelection(returning = false) {
   const gallery = $('#avatar-gallery');
   const status = $('#avatar-selection-status');
   const button = $('#accept-avatar');
   if (!gallery || !status || !button) return;
-  const options = Object.entries(CHARACTERS);
+  const options = Object.entries(CHARACTERS).filter(([, avatar]) => avatar.type === 'player');
   if (!options.length) { status.textContent = 'No avatars are available right now.'; status.className = 'avatar-selection-status error'; button.disabled = true; return; }
   gallery.innerHTML = options.map(([id, avatar]) => `<button type="button" class="avatar-choice" data-avatar-id="${id}" aria-label="Choose ${avatar.name}"><span class="avatar-choice-art"><img src="${avatar.asset}" alt="${avatar.name}" loading="lazy"></span><span class="avatar-choice-name">${avatar.name}</span></button>`).join('');
   gallery.querySelectorAll('.avatar-choice').forEach((choice) => {
@@ -77,13 +81,16 @@ function renderAvatarSelection() {
       status.className = 'avatar-selection-status success';
     });
   });
-  status.textContent = 'Select an avatar to continue.'; status.className = 'avatar-selection-status'; button.disabled = true;
+  gallery.querySelectorAll('.avatar-choice').forEach((choice) => choice.classList.toggle('selected', choice.dataset.avatarId === selectedAvatar));
+  button.disabled = !selectedAvatar;
+  button.textContent = returning ? 'CHANGE AVATAR' : 'CONTINUE TO BATTLEFIELD';
+  status.textContent = returning && selectedAvatar ? `You have already selected ${CHARACTERS[selectedAvatar].name}. Would you like to change it?` : 'Select an avatar to continue.';
+  status.className = returning ? 'avatar-selection-status success' : 'avatar-selection-status';
 }
 
 async function beginVerifiedGame() {
   session = await api('/api/game/new', {});
-  if (session.finalized) { $('#boot')?.classList.add('hidden'); $('#auth-screen')?.classList.add('hidden'); $('#avatar-creator')?.classList.add('hidden'); $('#game-shell')?.classList.remove('hidden'); startPhaser(); render(session); return; }
-  showAvatarOnboarding();
+  showAvatarOnboarding(session.finalized ? session.avatar : null);
 }
 
 function bindAuthEvents() {
@@ -303,8 +310,14 @@ function renderAvatars(s) {
   if (!avatarStage) return;
   if (!playerAvatar) {
     playerAvatar = Avatar({ character: s.avatar?.character || 'organic-apprentice', state: 'idle', size: 'player', direction: 'right', config: s.avatar?.config || s.avatar });
-    bossAvatar = Avatar({ character: 'carbonyl-dragon', state: 'idle', size: 'boss', direction: 'left' });
+    bossAvatar = Avatar({ character: 'carbonyl-dragon', asset: s.boss.image ? `/static/assets/bosses/${s.boss.image}` : '/static/assets/bosses/boss-placeholder.svg', displayName: s.boss.name, state: 'idle', size: 'boss', direction: 'left' });
     avatarStage.append(playerAvatar, bossAvatar);
+  } else {
+    const expectedBossAsset = s.boss.image ? `/static/assets/bosses/${s.boss.image}` : '/static/assets/bosses/boss-placeholder.svg';
+    if (bossAvatar.dataset.asset !== expectedBossAsset) {
+      const replacement = Avatar({ character: 'carbonyl-dragon', asset: expectedBossAsset, displayName: s.boss.name, state: 'idle', size: 'boss', direction: 'left' });
+      bossAvatar.replaceWith(replacement); bossAvatar = replacement;
+    }
   }
   playerAvatar.querySelector('.avatar-label')?.remove();
   bossAvatar.querySelector('.avatar-label')?.remove();
@@ -334,9 +347,16 @@ function renderSpells(s) {
   const spellsContainer = $('#spells');
   if (!spellsContainer) return;
 
-  spellsContainer.innerHTML = `<div class="control-panel"><div class="control-title">ARSENAL // SELECT A SPELL</div><div class="spell-grid">${spells.map(([id, name, type, damage]) => {
+  const orderedSpells = [...spells].sort(([leftId], [rightId]) => {
+    const leftAvailable = Boolean(s.spell_damage && Object.keys(s.spell_damage).length && s.spell_damage[leftId]);
+    const rightAvailable = Boolean(s.spell_damage && Object.keys(s.spell_damage).length && s.spell_damage[rightId]);
+    return Number(rightAvailable) - Number(leftAvailable);
+  });
+  spellsContainer.innerHTML = `<div class="control-panel"><div class="control-title">ARSENAL // SELECT A SPELL</div><div class="spell-grid">${orderedSpells.map(([id, name, type, damage]) => {
     const cooldown = s.cooldowns?.[id] || 0;
-    return `<button class="spell" data-spell="${id}" ${cooldown ? 'disabled' : ''}><div class="spell-name">${name}</div><div class="spell-meta">${type} · ${cooldown ? cooldown + 's' : damage}</div></button>`;
+    const unavailable = Boolean(s.spell_damage && Object.keys(s.spell_damage).length && !s.spell_damage[id]);
+    const activeDamage = s.spell_damage?.[id] ? `${s.spell_damage[id]} DMG` : damage;
+    return `<button class="spell" data-spell="${id}" ${cooldown || unavailable ? 'disabled' : ''}><div class="spell-name">${name}</div><div class="spell-meta">${type} · ${unavailable ? 'NOT AVAILABLE' : cooldown ? cooldown + 's' : activeDamage}</div></button>`;
   }).join('')}</div></div>`;
 
   document.querySelectorAll('[data-spell]').forEach((button) => {
@@ -452,7 +472,6 @@ function drawScene(s) {
   scene.children.list.filter((x) => x.getData?.('dynamic')).forEach((x) => x.destroy());
 
   const chapterColor = Phaser.Display.Color.HexStringToColor(s.chapter_color).color;
-  scene.add.text(width * 0.5, height * 0.12, `${s.chapter_name.toUpperCase()} // ${s.boss.lore}`, { fontFamily: 'DM Mono', fontSize: '12px', color: '#b8cecc' }).setOrigin(0.5).setData('dynamic', true);
   scene.add.circle(width * 0.72, height * 0.48, Math.min(125, width * 0.18), chapterColor, 0.08).setStrokeStyle(2, chapterColor, 0.45).setData('dynamic', true);
 }
 
@@ -463,6 +482,10 @@ function bindDomEvents() {
       $('#boot')?.classList.add('hidden'); $('#auth-screen')?.classList.remove('hidden');
     });
   }
+
+  $('#keep-avatar')?.addEventListener('click', () => {
+    $('#avatar-creator')?.classList.add('hidden'); $('#game-shell')?.classList.remove('hidden'); startPhaser(); render(session);
+  });
 
   const acceptButton = $('#accept-avatar');
   if (acceptButton) {

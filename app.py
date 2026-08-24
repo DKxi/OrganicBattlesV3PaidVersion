@@ -11,6 +11,7 @@ import secrets
 import smtplib
 import sqlite3
 import json
+import logging
 try:
     import tomllib
 except ModuleNotFoundError:  # Python 3.10 and earlier
@@ -26,6 +27,7 @@ from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 ROOT = Path(__file__).parent
+logger = logging.getLogger("organic_battles.assets")
 # Load local secrets before reading any environment-backed configuration.
 # Existing process environment variables take precedence over values in .env.
 load_dotenv(ROOT / ".env")
@@ -229,10 +231,143 @@ EXPLANATIONS = {
     "In a resonance hybrid, the real molecule hasâ€¦": "A resonance hybrid is the single real structure represented by multiple contributors. Electron density is delocalized across the contributing structures rather than frozen in only one of them.",
 }
 
+# Content source switch. Set GAME_CONTENT_SOURCE=json (or change the default
+# below) to load the complete chapter/question bank from data/*.json.
+GAME_CONTENT_SOURCE = os.getenv("GAME_CONTENT_SOURCE", "app").strip().lower()
+QUESTION_BANK_BY_CHAPTER = {chapter_id: QUESTIONS for chapter_id in range(1, len(CHAPTERS) + 1)}
+QUESTION_BANK_BY_BOSS = {}
+BOSS_SPELL_VALUES = {}
+QUESTION_EXPLANATIONS = dict(EXPLANATIONS)
+QUESTION_BOSS_IMAGES = {}
+QUESTION_SPELL_VALUES = {}
+JSON_SPELL_DAMAGE: dict[int, int] = {}
+JSON_SPELL_IDS_BY_RANK = ("fire-spark", "resonance-burst", "mechanism-storm")
+
+
+def json_available_spells(values):
+    """Map the JSON spell damage row to one concrete spell per listed value."""
+    return {spell_id: int(values[index]) for index, spell_id in enumerate(JSON_SPELL_IDS_BY_RANK) if index < len(values)}
+
+
+def _slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def load_json_content():
+    """Load chapters, boss metadata/images, questions, explanations and spell power."""
+    global CHAPTERS, QUESTION_BANK_BY_CHAPTER, QUESTION_BANK_BY_BOSS, BOSS_SPELL_VALUES, QUESTION_EXPLANATIONS, QUESTION_BOSS_IMAGES, QUESTION_SPELL_VALUES, SPELLS
+    manifest = json.loads((ROOT / "data" / "manifest.json").read_text(encoding="utf-8"))
+    chapters = []
+    question_bank = {}
+    question_boss_bank = {}
+    boss_spell_values = {}
+    explanations = {}
+    boss_images = {}
+    spell_values = {}
+    reported_missing_boss_images = set()
+    spell_damage = {}
+    for entry in manifest["chapters"]:
+        chapter_data = json.loads((ROOT / "data" / entry["file"]).read_text(encoding="utf-8"))
+        chapter_id = int(chapter_data["chapter"])
+        questions = []
+        boss_groups = {}
+        for item in chapter_data.get("questions", []):
+            choices = [option["text"] for option in item.get("options", [])]
+            prompt = item.get("question", "")
+            correct = item.get("correct_answer", choices[0] if choices else "")
+            questions.append((prompt, choices, correct))
+            explanations[prompt] = item.get("explanation", "Review the chemistry concept and compare each answer carefully.")
+            boss_image = (item.get("images") or [None])[0]
+            if boss_image:
+                boss_images[prompt] = boss_image
+            spell_values[prompt] = [int(value) for value in item.get("spells", [])]
+            for damage in item.get("spells", []):
+                spell_damage[int(damage)] = int(damage)
+            boss_name = item.get("boss") or chapter_data.get("assigned_boss") or entry.get("boss", "Organic Chemistry Boss")
+            if not boss_image:
+                missing_key = (boss_name, "<no filename>")
+                if missing_key not in reported_missing_boss_images:
+                    logger.warning("Missing boss image: %s (question %s has no image filename)", boss_name, item.get("id", prompt[:40]))
+                    reported_missing_boss_images.add(missing_key)
+            elif not (ROOT / "bosses" / boss_image).is_file():
+                missing_key = (boss_name, boss_image)
+                if missing_key not in reported_missing_boss_images:
+                    logger.warning("Missing boss image: %s (question %s expects %s)", boss_name, item.get("id", prompt[:40]), ROOT / "bosses" / boss_image)
+                    reported_missing_boss_images.add(missing_key)
+            boss_groups.setdefault(boss_name, item)
+            question_boss_bank.setdefault((chapter_id, _slug(boss_name)), []).append((prompt, choices, correct))
+            boss_spell_values.setdefault((chapter_id, _slug(boss_name)), [int(value) for value in item.get("spells", [])])
+        question_bank[chapter_id] = questions
+        bosses = []
+        for index, (boss_name, sample) in enumerate(boss_groups.items()):
+            boss_id = _slug(boss_name)
+            image = (sample.get("images") or [None])[0]
+            health = max([int(value) for item in chapter_data.get("questions", []) if (item.get("boss") or chapter_data.get("assigned_boss") or entry.get("boss", "Organic Chemistry Boss")) == boss_name for value in item.get("health", [100])] or [100])
+            bosses.append((boss_id, boss_name, health, 15, "MAJOR BOSS" if index == len(boss_groups) - 1 else "Mini-Boss", f"{chapter_data.get('chapter_title', '')} // {sample.get('topic', 'Organic chemistry')}", image))
+        chapters.append({"id": chapter_id, "name": chapter_data.get("chapter_title", entry.get("title", f"Chapter {chapter_id}")), "subtitle": "The JSON Research Archive", "color": ["#27d9cb", "#9a7cff", "#e34dff", "#ff9f5a"][((chapter_id - 1) % 4)], "bosses": bosses})
+    if not chapters or any(not chapter["bosses"] for chapter in chapters):
+        raise RuntimeError("JSON content source contains a chapter without bosses")
+    CHAPTERS = chapters
+    QUESTION_BANK_BY_CHAPTER = question_bank
+    QUESTION_BANK_BY_BOSS = question_boss_bank
+    BOSS_SPELL_VALUES = boss_spell_values
+    QUESTION_EXPLANATIONS = explanations
+    QUESTION_BOSS_IMAGES = boss_images
+    QUESTION_SPELL_VALUES = spell_values
+    JSON_SPELL_DAMAGE = spell_damage
+    if JSON_SPELL_DAMAGE:
+        SPELLS = {spell_id: (name, kind, JSON_SPELL_DAMAGE.get(damage, damage), cooldown, description) for spell_id, (name, kind, damage, cooldown, description) in SPELLS.items()}
+
+
+if GAME_CONTENT_SOURCE == "json":
+    load_json_content()
+elif GAME_CONTENT_SOURCE != "app":
+    raise RuntimeError("GAME_CONTENT_SOURCE must be 'app' or 'json'")
+else:
+    # Built-in chapter entries do not carry image filenames, so resolve them
+    # only against the dedicated bosses/ asset directory.
+    boss_assets = {file.stem: file.name for file in (ROOT / "bosses").glob("*.png")}
+    CHAPTERS = [
+        {**chapter, "bosses": [(*boss, boss_assets.get(boss[0])) for boss in chapter["bosses"]]}
+        for chapter in CHAPTERS
+    ]
+
+
+PLAYER_AVATAR_ASSETS = {
+    "organic-apprentice": ("Organic Apprentice", "organic-apprentice.png"),
+    "reaction-mage": ("Reaction Mage", "reaction-mage.png"),
+    "player-carbon-trailblazer": ("Player Carbon Trailblazer", "player-carbon-trailblazer.png"),
+    "player-catalysis-adept": ("Player Catalysis Adept", "player-catalysis-adept.png"),
+    "player-compound-artificer": ("Player Compound Artificer", "player-compound-artificer.png"),
+    "player-molecular-analyst": ("Player Molecular Analyst", "player-molecular-analyst.png"),
+    "player-research-alchemist": ("Player Research Alchemist", "player-research-alchemist.png"),
+}
+
+
+def validate_asset_files():
+    """Write actionable startup warnings for missing player/boss artwork."""
+    player_dirs = (ROOT / "avatars", ROOT / "static" / "assets" / "avatars")
+    boss_dirs = (ROOT / "bosses", ROOT / "static" / "assets" / "bosses")
+    for name, filename in PLAYER_AVATAR_ASSETS.values():
+        for directory in player_dirs:
+            if not (directory / filename).is_file():
+                logger.warning("Missing player image: %s (%s)", name, directory / filename)
+    for chapter in CHAPTERS:
+        for boss in chapter["bosses"]:
+            filename = boss[6] if len(boss) > 6 else None
+            if not filename:
+                logger.warning("Missing boss image: %s (chapter %s has no image filename)", boss[1], chapter["id"])
+                continue
+            for directory in boss_dirs:
+                if not (directory / filename).is_file():
+                    logger.warning("Missing boss image: %s (%s)", boss[1], directory / filename)
+
+
+validate_asset_files()
+
 PLAYER_AVATAR_IDS = {
     "organic-apprentice",
     "reaction-mage",
-    "carbonyl-dragon",
     "player-carbon-trailblazer",
     "player-catalysis-adept",
     "player-compound-artificer",
@@ -276,6 +411,20 @@ class Session:
         self.log = ["Welcome, alchemist. Choose a spell to begin."]
         self.completed: set[str] = set()
         self.rewards: list[str] = []
+        self.question_cursors: dict[tuple[int, str], int] = {}
+
+    def prime_json_question(self):
+        boss_key = (self.chapter, self.current_boss()[0])
+        questions = QUESTION_BANK_BY_BOSS.get(boss_key, [])
+        if not questions:
+            return
+        cursor = self.question_cursors.get(boss_key, 0)
+        q = questions[cursor % len(questions)]
+        self.question_cursors[boss_key] = cursor + 1
+        choices = q[1][:]
+        random.shuffle(choices)
+        self.active_question = (q[0], choices, q[2])
+        self.active_spell = None
 
     def current_boss(self):
         return CHAPTERS[self.chapter - 1]["bosses"][self.boss_index]
@@ -283,13 +432,18 @@ class Session:
     def state(self):
         boss = self.current_boss()
         if not self.boss_hp: self.boss_hp = boss[2]
+        boss_image = QUESTION_BOSS_IMAGES.get(self.active_question[0]) if self.active_question else None
+        boss_image = boss_image or (boss[6] if len(boss) > 6 else None)
+        boss_spell_values = BOSS_SPELL_VALUES.get((self.chapter, boss[0]), [])
+        question_spell_values = QUESTION_SPELL_VALUES.get(self.active_question[0], boss_spell_values) if self.active_question else boss_spell_values
+        question_spell_damage = json_available_spells(question_spell_values) if question_spell_values else {}
         question = None
         if self.active_question:
             question = {"prompt": self.active_question[0], "choices": self.active_question[1]}
         return {"session_id": self.id, "username": self.username, "avatar": self.avatar.model_dump() if self.avatar else None, "finalized": self.finalized,
                 "chapter": self.chapter, "chapter_name": CHAPTERS[self.chapter-1]["name"], "chapter_subtitle": CHAPTERS[self.chapter-1]["subtitle"],
-                "chapter_color": CHAPTERS[self.chapter-1]["color"], "boss": {"id": boss[0], "name": boss[1], "max_hp": boss[2], "hp": self.boss_hp, "damage": boss[3], "kind": boss[4], "lore": boss[5]},
-                "player": {"hp": self.player_hp, "max_hp": self.player_max_hp}, "question": question, "active_spell": self.active_spell,
+                "chapter_color": CHAPTERS[self.chapter-1]["color"], "boss": {"id": boss[0], "name": boss[1], "max_hp": boss[2], "hp": self.boss_hp, "damage": boss[3], "kind": boss[4], "lore": boss[5], "image": boss_image},
+                "player": {"hp": self.player_hp, "max_hp": self.player_max_hp}, "question": question, "spell_damage": question_spell_damage, "active_spell": self.active_spell,
                 "cooldowns": {key: max(0, round(value - time.time(), 1)) for key, value in self.cooldowns.items()}, "log": self.log[-5:],
                 "completed": list(self.completed), "rewards": self.rewards}
 
@@ -428,11 +582,11 @@ def finalize_avatar(session_id: str, avatar: Avatar, authorization: str | None =
     user = auth_user(authorization, session_token)
     if s.user_id != user["id"]: raise HTTPException(403, "This game session belongs to another account")
     if avatar.character not in PLAYER_AVATAR_IDS: raise HTTPException(400, "Choose an available player avatar")
-    if s.finalized: raise HTTPException(409, "Avatar is permanent")
+    was_finalized = s.finalized
     s.avatar, s.finalized = avatar, True
     with db() as connection:
         connection.execute("UPDATE users SET avatar_json=? WHERE id=?", (avatar.model_dump_json(), user["id"]))
-    s.log.append("Avatar accepted. Your ORGO journey begins."); return s.state()
+    s.log.append("Avatar updated. Your ORGO journey continues." if was_finalized else "Avatar accepted. Your ORGO journey begins."); return s.state()
 
 @app.post("/api/battle/select-spell")
 def select_spell(session_id: str, request: SpellRequest, authorization: str | None = Header(default=None), session_token: str | None = Cookie(default=None)):
@@ -442,9 +596,16 @@ def select_spell(session_id: str, request: SpellRequest, authorization: str | No
     if not s.finalized: raise HTTPException(400, "Finalize your avatar first")
     if s.active_question: raise HTTPException(409, "Answer the active question")
     spell = SPELLS[request.spell_id]
+    if GAME_CONTENT_SOURCE == "json":
+        boss_values = BOSS_SPELL_VALUES.get((s.chapter, s.current_boss()[0]), [])
+        if boss_values and request.spell_id not in json_available_spells(boss_values):
+            raise HTTPException(409, "This spell is not available for the current boss")
     if s.cooldowns.get(request.spell_id, 0) > time.time(): raise HTTPException(409, "Spell is cooling down")
+    if GAME_CONTENT_SOURCE == "json": s.prime_json_question()
     s.active_spell, s.turn_id = request.spell_id, str(uuid.uuid4())
-    q = random.choice(QUESTIONS); choices = q[1][:]; random.shuffle(choices); s.active_question = (q[0], choices, q[2])
+    if GAME_CONTENT_SOURCE != "json":
+        available_questions = QUESTION_BANK_BY_BOSS.get((s.chapter, s.current_boss()[0]), QUESTION_BANK_BY_CHAPTER.get(s.chapter, QUESTIONS))
+        q = random.choice(available_questions); choices = q[1][:]; random.shuffle(choices); s.active_question = (q[0], choices, q[2])
     return {"turn_id": s.turn_id, **s.state()}
 
 @app.post("/api/battle/answer")
@@ -453,15 +614,19 @@ def answer(session_id: str, request: AnswerRequest, authorization: str | None = 
     if s.user_id != auth_user(authorization, session_token)["id"]: raise HTTPException(403, "This game session belongs to another account")
     if not s.active_question or not s.active_spell: raise HTTPException(409, "No active question")
     q, choices, correct = s.active_question; spell_id = s.active_spell; spell = SPELLS[spell_id]
-    is_correct = request.answer == correct; damage = spell[2] if is_correct else 0
+    is_correct = request.answer == correct
+    damage = spell[2]
+    if GAME_CONTENT_SOURCE == "json" and QUESTION_SPELL_VALUES.get(q):
+        damage = QUESTION_SPELL_VALUES[q][JSON_SPELL_IDS_BY_RANK.index(spell_id)]
+    damage = damage if is_correct else 0
     s.boss_hp = max(0, s.boss_hp - damage); s.cooldowns[spell_id] = time.time() + spell[3]
     boss_hit = random.random() < 0.5; boss_damage = s.current_boss()[3] if boss_hit else 0
     s.player_hp = max(0, s.player_hp - boss_damage); s.log.append(("Correct! " + spell[0] + " deals " + str(damage) + " damage." if is_correct else "Fizzle. The correct answer was: " + correct))
-    result = {"correct": is_correct, "question_prompt": q, "correct_answer": correct, "explanation": EXPLANATIONS.get(q, "Review the definition and compare each answer with the key chemistry idea in the question."), "damage": damage, "boss_hit": boss_hit, "boss_damage": boss_damage, "spell_id": spell_id}
+    result = {"correct": is_correct, "question_prompt": q, "correct_answer": correct, "explanation": QUESTION_EXPLANATIONS.get(q, EXPLANATIONS.get(q, "Review the definition and compare each answer with the key chemistry idea in the question.")), "damage": damage, "boss_hit": boss_hit, "boss_damage": boss_damage, "spell_id": spell_id}
     defeated = s.boss_hp <= 0; defeat = s.player_hp <= 0
     s.active_question = s.active_spell = s.turn_id = None
     if defeated:
-        boss_id = s.current_boss()[0]; s.completed.add(boss_id); reward = {1:"Resonance Slayer",2:"Mechanism Master",3:"Spectral Champion"}[s.chapter] if s.boss_index == len(CHAPTERS[s.chapter-1]["bosses"])-1 else "Arcane Chemistry Shard"; s.rewards.append(reward); s.log.append(f"{s.current_boss()[1]} defeated! Reward unlocked: {reward}.")
+        boss_id = s.current_boss()[0]; s.completed.add(boss_id); reward = {1:"Resonance Slayer",2:"Mechanism Master",3:"Spectral Champion"}.get(s.chapter, f"Chapter {s.chapter} Champion") if s.boss_index == len(CHAPTERS[s.chapter-1]["bosses"])-1 else "Arcane Chemistry Shard"; s.rewards.append(reward); s.log.append(f"{s.current_boss()[1]} defeated! Reward unlocked: {reward}.")
     if defeat: s.log.append("Your aura fades. Retry when ready.")
     result.update({"defeated": defeated, "defeat": defeat, **s.state()}); return result
 
@@ -469,7 +634,8 @@ def answer(session_id: str, request: AnswerRequest, authorization: str | None = 
 def retry(session_id: str, authorization: str | None = Header(default=None), session_token: str | None = Cookie(default=None)):
     s = get_session(session_id)
     if s.user_id != auth_user(authorization, session_token)["id"]: raise HTTPException(403, "This game session belongs to another account")
-    s.player_hp = 150; s.boss_hp = s.current_boss()[2]; s.active_question = s.active_spell = None; s.log.append("Battle reset. Your completed progression remains safe."); return s.state()
+    s.player_hp = 150; s.boss_hp = s.current_boss()[2]; s.active_question = s.active_spell = None
+    s.log.append("Battle reset. Your completed progression remains safe."); return s.state()
 
 @app.post("/api/battle/next-turn")
 def next_turn(session_id: str, authorization: str | None = Header(default=None), session_token: str | None = Cookie(default=None)):
@@ -477,9 +643,10 @@ def next_turn(session_id: str, authorization: str | None = Header(default=None),
     if s.user_id != auth_user(authorization, session_token)["id"]: raise HTTPException(403, "This game session belongs to another account")
     if s.current_boss()[0] not in s.completed: raise HTTPException(409, "Defeat the current boss first")
     if s.boss_index < len(CHAPTERS[s.chapter-1]["bosses"])-1: s.boss_index += 1
-    elif s.chapter < 3: s.chapter += 1; s.boss_index = 0
+    elif s.chapter < len(CHAPTERS): s.chapter += 1; s.boss_index = 0
     else: return {"victory": True, **s.state()}
-    s.boss_hp = s.current_boss()[2]; s.player_hp = 150; s.log.append("New arena discovered: " + s.current_boss()[1]); return s.state()
+    s.boss_hp = s.current_boss()[2]; s.player_hp = 150
+    s.log.append("New arena discovered: " + s.current_boss()[1]); return s.state()
 
 @app.get("/api/progression")
 def progression(session_id: str, authorization: str | None = Header(default=None), session_token: str | None = Cookie(default=None)):

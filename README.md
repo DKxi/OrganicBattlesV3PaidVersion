@@ -32,6 +32,17 @@ Copy these values into the server environment, never into JavaScript or a commit
 
 Alternatively, local development may use the ignored `secrets.toml` file. Put the Gmail sender and app password under `[gmail]` as shown in that file. Environment variables take precedence over `secrets.toml`. The app password is used for Gmail SMTP authentication; it is not a Google API key.
 
+## Game content source
+
+The server-side switch is `GAME_CONTENT_SOURCE`. It defaults to `app`, which uses the built-in chapters, questions, explanations, and spells in `app.py`. Set it to `json` before starting the server to load every chapter file from `data/`:
+
+```powershell
+$env:GAME_CONTENT_SOURCE="json"
+uvicorn app:app --reload
+```
+
+JSON mode loads all 27 chapters, their questions and explanations, spell damage values, grouped bosses, and each boss image named by the chapter JSON. Boss images are served from `static/assets/bosses/`, populated from the repository’s `bosses/` folder. Set the variable back to `app` to restore the built-in content.
+
 Example local flow: start Uvicorn, click `ENTER THE LABYRINTH`, choose `CREATE ACCOUNT`, submit an email/username/password, copy the code from the Uvicorn terminal, verify it, choose an avatar, and enter the battle. Use a unique username; attempting a duplicate shows `Username taken, choose a different one` in a modal.
 
 The game preserves three chapters, fourteen bosses, nine named spells, 150 player HP, genuine cooldown validation, one-attempt vocabulary questions, 50/50 boss counterattacks, avatar permanence, defeat/retry, rewards, progression locking, and the final `SPECTRAL CHAMPION` title. Questions are originally written and do not reproduce textbook passages verbatim.

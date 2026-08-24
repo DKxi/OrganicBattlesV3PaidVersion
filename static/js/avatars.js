@@ -64,7 +64,7 @@ export const CHARACTERS = {
   'carbonyl-dragon': { name: 'Carbonyl Dragon', type: 'boss', asset: '/static/assets/avatars/carbonyl-dragon.png' },
 };
 
-export function Avatar({ character = 'organic-apprentice', state = 'idle', size = 'large', direction = 'right', className = '', label = '', config = null } = {}) {
+export function Avatar({ character = 'organic-apprentice', state = 'idle', size = 'large', direction = 'right', className = '', label = '', config = null, asset = null, displayName = null } = {}) {
   const safeCharacter = CHARACTERS[character] ? character : 'organic-apprentice';
   const safeState = AVATAR_STATES.has(state) ? state : 'idle';
   const safeConfig = normalizeAvatarConfig(config || {});
@@ -74,11 +74,19 @@ export function Avatar({ character = 'organic-apprentice', state = 'idle', size 
   node.dataset.state = safeState;
   node.dataset.avatarConfig = JSON.stringify(safeConfig);
   node.setAttribute('aria-label', label || CHARACTERS[safeCharacter].name);
-  node.innerHTML = `<div class="avatar-art-frame"><img class="avatar-art" src="${CHARACTERS[safeCharacter].asset}" alt="${CHARACTERS[safeCharacter].name}" decoding="async" draggable="false"><span class="avatar-fallback" aria-hidden="true">${CHARACTERS[safeCharacter].name}</span></div><div class="avatar-effects" aria-hidden="true"><span class="effect-aura"></span><span class="effect-spark spark-one"></span><span class="effect-spark spark-two"></span><span class="effect-accessory">${safeConfig.accessory === 'benzene-pin' ? '⌬' : safeConfig.accessory === 'periodic-table-badge' ? 'C' : safeConfig.accessory === 'molecule-brooch' ? '⌘' : safeConfig.accessory === 'reaction-arrow-pin' ? '↗' : safeConfig.accessory === 'chemist-gloves' ? '✦' : '◈'}</span></div>`;
+  const imageAsset = asset || CHARACTERS[safeCharacter].asset;
+  const imageName = displayName || CHARACTERS[safeCharacter].name;
+  node.dataset.asset = imageAsset;
+  node.innerHTML = `<div class="avatar-art-frame"><img class="avatar-art" src="${imageAsset}" alt="${imageName}" decoding="async" draggable="false"><span class="avatar-fallback" aria-hidden="true">${imageName}</span></div><div class="avatar-effects" aria-hidden="true"><span class="effect-aura"></span><span class="effect-spark spark-one"></span><span class="effect-spark spark-two"></span><span class="effect-accessory">${safeConfig.accessory === 'benzene-pin' ? '⌬' : safeConfig.accessory === 'periodic-table-badge' ? 'C' : safeConfig.accessory === 'molecule-brooch' ? '⌘' : safeConfig.accessory === 'reaction-arrow-pin' ? '↗' : safeConfig.accessory === 'chemist-gloves' ? '✦' : '◈'}</span></div>`;
   const image = node.querySelector('.avatar-art');
   image.addEventListener('error', () => {
     if (image.dataset.fallback) return;
     image.dataset.fallback = 'true';
+    if (asset) {
+      image.style.visibility = 'hidden';
+      node.classList.add('avatar-asset-fallback');
+      return;
+    }
     image.src = CHARACTERS['organic-apprentice'].asset;
     node.classList.add('avatar-asset-fallback');
   });
